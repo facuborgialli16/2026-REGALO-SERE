@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Por mil vidas · Nuestra historia</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Garamond (editorial), Plus Jakarta Sans (UI), Caveat (manuscrita) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Configuración personalizada de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF6F0',
+            beige: '#F3ECE1',
+            beigeDark: '#E6DBC9',
+            paper: '#FFFDF9',
+            dustyRose: '#B57276',
+            dustyRoseDark: '#9A5A5E',
+            dustyRoseLight: '#F5E8E9',
+            gold: '#C6A467',
+            goldLight: '#E5D1A8',
+            goldDark: '#9A7B42',
+            ink: '#2E2522',
+            inkMuted: '#6F625D',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            hand: ['"Caveat"', 'cursive'],
+          },
+          boxShadow: {
+            polaroid: '0 10px 25px -5px rgba(46, 37, 34, 0.12), 0 4px 10px -2px rgba(46, 37, 34, 0.06)',
+            polaroidHover: '0 20px 35px -8px rgba(46, 37, 34, 0.18), 0 8px 16px -4px rgba(181, 114, 118, 0.12)',
+            soft: '0 8px 30px rgba(143, 114, 62, 0.08)',
+            envelope: '0 18px 40px -10px rgba(46, 37, 34, 0.18)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Estilos base y variables de diseño */
+    :root {
+      --bg-cream: #FAF6F0;
+      --bg-beige: #F3ECE1;
+      --color-rose: #B57276;
+      --color-gold: #C6A467;
+      --color-ink: #2E2522;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-cream);
+      color: var(--color-ink);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(198, 164, 103, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 85% 25%, rgba(181, 114, 118, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(198, 164, 103, 0.07) 0%, transparent 50%);
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ocultar barras de desplazamiento manteniendo el scroll fluido */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Textura sutil de papel artesanal */
+    .paper-texture {
+      background-color: #FFFDF9;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(198, 164, 103, 0.04) 0%,
+        rgba(255, 253, 249, 0.9) 100%
+      );
+    }
+
+    /* Líneas de papel de carta */
+    .letter-lined {
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        rgba(198, 164, 103, 0.22) 32px
+      );
+      line-height: 32px;
+    }
+
+    /* Inclinación orgánica alternada para tarjetas Polaroid */
+    .polaroid-card {
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+    }
+    .polaroid-card:nth-child(odd) {
+      transform: rotate(-1.6deg);
+    }
+    .polaroid-card:nth-child(even) {
+      transform: rotate(1.4deg);
+    }
+    .polaroid-card:hover,
+    .polaroid-card:focus-within {
+      transform: rotate(0deg) translateY(-6px) scale(1.015);
+      z-index: 10;
+    }
+
+    /* Disco de vinilo decorativo en tarjetas musicales */
+    .vinyl-disc {
+      background: radial-gradient(
+        circle at center,
+        #C6A467 0%,
+        #C6A467 16%,
+        #FAF6F0 17%,
+        #FAF6F0 20%,
+        #2A2321 21%,
+        #1D1817 38%,
+        #2E2624 40%,
+        #1B1615 58%,
+        #2C2422 60%,
+        #181413 100%
+      );
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .song-card:hover .vinyl-disc {
+      transform: translateX(18px) rotate(65deg);
+    }
+
+    /* Animación flotante sutil para el sobre de carta */
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+    .envelope-float {
+      animation: gentleFloat 4.2s ease-in-out infinite;
+    }
+    .envelope-float:hover {
+      animation-play-state: paused;
+    }
+
+    /* Animación de pulso suave en el sello de lacre dorado */
+    @keyframes waxGlow {
+      0%, 100% {
+        box-shadow: 0 4px 14px rgba(198, 164, 103, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.45);
+      }
+      50% {
+        box-shadow: 0 6px 22px rgba(198, 164, 103, 0.72), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+      }
+    }
+    .wax-seal {
+      background: radial-gradient(circle at 32% 30%, #DFC38D 0%, #C6A467 55%, #9C7C42 100%);
+      animation: waxGlow 3.2s ease-in-out infinite;
+    }
+
+    /* Solapa superior del sobre con perspectiva 3D */
+    .envelope-flap {
+      transform-origin: top center;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .envelope-opened .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    /* Animaciones de aparición suave */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Modal backdrop y diálogo */
+    .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-panel {
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .modal-backdrop.active .modal-panel {
+      transform: translateY(0) scale(1);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-ink antialiased selection:bg-dustyRose/20 selection:text-ink">
+
+  <!-- Contenedor de notificaciones Toast (reemplaza alert/confirm) -->
+  <div id="toast-container" class="fixed top-4 right-4 left-4 sm:left-auto sm:w-80 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- =====================================================================
+       1. ENCABEZADO Y CONTADOR DE TIEMPO EN TIEMPO REAL
+  ====================================================================== -->
+  <header class="relative pt-10 pb-12 sm:pt-16 sm:pb-16 px-4 sm:px-6 max-w-5xl mx-auto text-center animate-fade-up">
+    <!-- Ornamento superior minimalista -->
+    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-beige/90 border border-gold/30 text-xs sm:text-sm text-inkMuted mb-5 shadow-sm">
+      <span class="w-1.5 h-1.5 rounded-full bg-dustyRose animate-pulse"></span>
+      <span class="tracking-wide font-medium">Desde el 27 de julio de 2025</span>
+      <span class="text-gold">✦</span>
+    </div>
+
+    <!-- Título Editorial Principal -->
+    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-ink leading-none mb-3">
+      Por mil vidas
+    </h1>
+
+    <p class="font-serif italic text-xl sm:text-2xl text-dustyRoseDark max-w-xl mx-auto mb-8 sm:mb-10">
+      «Para que puedas tener en un solo lugar todas las cosas lindas desde el primer día»
+    </p>
+
+    <!-- Reloj Contador en Tiempo Real -->
+    <div class="bg-paper/90 backdrop-blur-sm border border-gold/25 rounded-3xl p-5 sm:p-8 shadow-soft max-w-3xl mx-auto">
+      <p class="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-inkMuted font-medium mb-4 sm:mb-5">
+        Tiempo juntos
+      </p>
+
+      <div id="countdown-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2.5 sm:gap-3.5" aria-live="polite">
+        <!-- Años -->
+        <div class="bg-beige/70 border border-beigeDark/60 rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+          <span id="time-years" class="font-serif text-3xl sm:text-4xl font-semibold text-ink tabular-nums">0</span>
+          <span id="label-years" class="text-[11px] sm:text-xs text-inkMuted mt-1 font-medium">Años</span>
+        </div>
+
+        <!-- Meses -->
+        <div class="bg-beige/70 border border-beigeDark/60 rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+          <span id="time-months" class="font-serif text-3xl sm:text-4xl font-semibold text-ink tabular-nums">0</span>
+          <span id="label-months" class="text-[11px] sm:text-xs text-inkMuted mt-1 font-medium">Meses</span>
+        </div>
+
+        <!-- Días -->
+        <div class="bg-beige/70 border border-beigeDark/60 rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+          <span id="time-days" class="font-serif text-3xl sm:text-4xl font-semibold text-ink tabular-nums">0</span>
+          <span id="label-days" class="text-[11px] sm:text-xs text-inkMuted mt-1 font-medium">Días</span>
+        </div>
+
+        <!-- Horas -->
+        <div class="bg-beige/70 border border-beigeDark/60 rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+          <span id="time-hours" class="font-serif text-3xl sm:text-4xl font-semibold text-dustyRoseDark tabular-nums">00</span>
+          <span id="label-hours" class="text-[11px] sm:text-xs text-inkMuted mt-1 font-medium">Horas</span>
+        </div>
+
+        <!-- Minutos -->
+        <div class="bg-beige/70 border border-beigeDark/60 rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+          <span id="time-minutes" class="font-serif text-3xl sm:text-4xl font-semibold text-dustyRoseDark tabular-nums">00</span>
+          <span id="label-minutes" class="text-[11px] sm:text-xs text-inkMuted mt-1 font-medium">Minutos</span>
+        </div>
+
+        <!-- Segundos -->
+        <div class="bg-dustyRoseLight/65 border border-dustyRose/25 rounded-2xl py-3.5 px-2 flex flex-col items-center justify-center transition-transform duration-300 hover:-translate-y-0.5">
+          <span id="time-seconds" class="font-serif text-3xl sm:text-4xl font-semibold text-dustyRose tabular-nums">00</span>
+          <span id="label-seconds" class="text-[11px] sm:text-xs text-dustyRoseDark mt-1 font-medium">Segundos</span>
+        </div>
+      </div>
+
+      <p id="total-days-caption" class="text-xs text-inkMuted/90 mt-4 font-serif italic text-base">
+        Calculando cada latido compartido...
+      </p>
+    </div>
+  </header>
+
+  <!-- Separador sutil -->
+  <div class="max-w-xs mx-auto flex items-center justify-center gap-3 opacity-60 my-2">
+    <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gold"></span>
+    <span class="text-gold text-xs">♥</span>
+    <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gold"></span>
+  </div>
+
+  <main class="space-y-16 sm:space-y-24 pb-20">
+
+    <!-- =====================================================================
+         2. ÁLBUM DE FOTOS (CARRUSEL ESTILO POLAROID)
+    ====================================================================== -->
+    <section aria-labelledby="photos-heading" class="pt-6">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <!-- Cabecera de sección -->
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-6 sm:mb-8">
+          <div>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-goldDark font-semibold block mb-1">
+              Álbum de fotos
+            </span>
+            <h2 id="photos-heading" class="font-serif text-3xl sm:text-4xl font-semibold text-ink">
+              Nuestros Recuerdos
+            </h2>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <!-- Flechas discretas de navegación -->
+            <div class="hidden sm:flex items-center gap-1.5 mr-1">
+              <button
+                type="button"
+                onclick="scrollCarousel('photos-carousel', -320)"
+                aria-label="Fotos anteriores"
+                class="w-10 h-10 rounded-full bg-beige hover:bg-beigeDark/70 border border-gold/25 flex items-center justify-center text-ink transition active:scale-95"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onclick="scrollCarousel('photos-carousel', 320)"
+                aria-label="Siguientes fotos"
+                class="w-10 h-10 rounded-full bg-beige hover:bg-beigeDark/70 border border-gold/25 flex items-center justify-center text-ink transition active:scale-95"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Botón + Agregar foto -->
+            <button
+              type="button"
+              onclick="openPhotoModal()"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-sm font-medium shadow-sm transition active:scale-95"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Agregar foto</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrusel Horizontal Polaroid -->
+      <div class="relative max-w-6xl mx-auto">
+        <div
+          id="photos-carousel"
+          class="flex gap-6 sm:gap-8 overflow-x-auto no-scrollbar snap-x snap-mandatory px-6 sm:px-8 py-6 scroll-smooth"
+        >
+          <!-- Las Polaroids se renderizan dinámicamente aquí -->
+        </div>
+
+        <!-- Controles táctiles/flechas inferiores para móvil -->
+        <div class="flex sm:hidden items-center justify-center gap-3 mt-1">
+          <button
+            type="button"
+            onclick="scrollCarousel('photos-carousel', -280)"
+            aria-label="Anterior"
+            class="w-9 h-9 rounded-full bg-beige border border-gold/25 flex items-center justify-center text-ink active:scale-95"
+          >
+            ‹
+          </button>
+          <span class="text-xs text-inkMuted">Desliza para ver más recuerdos</span>
+          <button
+            type="button"
+            onclick="scrollCarousel('photos-carousel', 280)"
+            aria-label="Siguiente"
+            class="w-9 h-9 rounded-full bg-beige border border-gold/25 flex items-center justify-center text-ink active:scale-95"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. ÁLBUM DE CANCIONES (CARRUSEL MUSICAL)
+    ====================================================================== -->
+    <section aria-labelledby="songs-heading">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-6 sm:mb-8">
+          <div>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-goldDark font-semibold block mb-1">
+              Álbum de canciones
+            </span>
+            <h2 id="songs-heading" class="font-serif text-3xl sm:text-4xl font-semibold text-ink">
+              Canciones que nos nombran
+            </h2>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <!-- Flechas discretas -->
+            <div class="hidden sm:flex items-center gap-1.5 mr-1">
+              <button
+                type="button"
+                onclick="scrollCarousel('songs-carousel', -320)"
+                aria-label="Canciones anteriores"
+                class="w-10 h-10 rounded-full bg-beige hover:bg-beigeDark/70 border border-gold/25 flex items-center justify-center text-ink transition active:scale-95"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onclick="scrollCarousel('songs-carousel', 320)"
+                aria-label="Siguientes canciones"
+                class="w-10 h-10 rounded-full bg-beige hover:bg-beigeDark/70 border border-gold/25 flex items-center justify-center text-ink transition active:scale-95"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Botón + Agregar canción -->
+            <button
+              type="button"
+              onclick="openSongModal()"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ink hover:bg-ink/90 text-cream text-sm font-medium shadow-sm transition active:scale-95"
+            >
+              <svg class="w-4 h-4 text-goldLight" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Agregar canción</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrusel Horizontal de Canciones -->
+      <div class="relative max-w-6xl mx-auto">
+        <div
+          id="songs-carousel"
+          class="flex gap-5 sm:gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory px-6 sm:px-8 py-4 scroll-smooth"
+        >
+          <!-- Las tarjetas musicales se renderizan dinámicamente aquí -->
+        </div>
+
+        <!-- Controles móvil -->
+        <div class="flex sm:hidden items-center justify-center gap-3 mt-2">
+          <button
+            type="button"
+            onclick="scrollCarousel('songs-carousel', -280)"
+            aria-label="Anterior"
+            class="w-9 h-9 rounded-full bg-beige border border-gold/25 flex items-center justify-center text-ink active:scale-95"
+          >
+            ‹
+          </button>
+          <span class="text-xs text-inkMuted">Desliza para explorar nuestra playlist</span>
+          <button
+            type="button"
+            onclick="scrollCarousel('songs-carousel', 280)"
+            aria-label="Siguiente"
+            class="w-9 h-9 rounded-full bg-beige border border-gold/25 flex items-center justify-center text-ink active:scale-95"
+          >
+            ›
+          </button>
+        </div>
+
+        <!-- Reproductor Embebido Opcional (aparece cuando una canción tiene link directo de Spotify/YouTube) -->
+        <div id="embedded-player-wrapper" class="hidden max-w-2xl mx-auto mt-6 px-4 sm:px-6">
+          <div class="bg-paper border border-gold/30 rounded-3xl p-4 shadow-soft">
+            <div class="flex items-center justify-between mb-2.5 px-1">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-dustyRose animate-ping"></span>
+                <span id="embedded-player-title" class="text-xs font-medium text-ink">Reproduciendo...</span>
+              </div>
+              <button
+                type="button"
+                onclick="closeEmbeddedPlayer()"
+                class="text-xs text-inkMuted hover:text-ink px-2 py-1 rounded-lg hover:bg-beige transition"
+              >
+                Cerrar reproductor ✕
+              </button>
+            </div>
+            <div id="embedded-player-container" class="w-full overflow-hidden rounded-2xl bg-beige/50"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. SECCIÓN DE CARTAS (SOBRE INTERACTIVO CON SELLO DE LACRE DORADO)
+    ====================================================================== -->
+    <section aria-labelledby="letters-heading" class="pt-4 px-4 sm:px-6 max-w-3xl mx-auto text-center">
+      <h2 id="letters-heading" class="font-serif text-3xl sm:text-4xl font-semibold text-ink mb-2">
+        Nuestro Buzón de Cartas
+      </h2>
+      <p class="text-sm text-inkMuted max-w-md mx-auto mb-10">
+        Toca el sobre para abrir nuestras cartas o escribir una nueva para el futuro.
+      </p>
+
+      <!-- Sobre de Carta Cerrado Interactivo -->
+      <div class="flex flex-col items-center justify-center">
+        <button
+          id="envelope-trigger"
+          type="button"
+          onclick="triggerEnvelopeOpen()"
+          aria-label="Abrir sobre de cartas románticas"
+          class="group relative w-[290px] sm:w-[340px] h-[195px] sm:h-[220px] rounded-2xl envelope-float focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+        >
+          <!-- Cuerpo trasero del sobre -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-[#EDE2D0] to-[#E2D3BC] border border-gold/40 shadow-envelope overflow-hidden">
+            <!-- Carta asomándose sutilmente en el interior -->
+            <div class="absolute inset-x-5 top-4 bottom-4 bg-paper rounded-xl border border-gold/20 shadow-sm transition-transform duration-500 group-hover:-translate-y-2 flex flex-col items-center pt-4 px-4">
+              <span class="font-hand text-lg text-dustyRoseDark">Para ti, en esta y mil vidas...</span>
+              <div class="w-24 h-px bg-gold/30 mt-1.5"></div>
+            </div>
+
+            <!-- Pliegues laterales e inferior del sobre (SVG nítido y responsivo) -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 340 220" preserveAspectRatio="none">
+              <!-- Triángulo izquierdo -->
+              <polygon points="0,0 170,122 0,220" fill="#F3ECE1" stroke="rgba(198,164,103,0.28)" stroke-width="1" />
+              <!-- Triángulo derecho -->
+              <polygon points="340,0 170,122 340,220" fill="#EFE6D7" stroke="rgba(198,164,103,0.28)" stroke-width="1" />
+              <!-- Solapa inferior -->
+              <polygon points="0,220 170,108 340,220" fill="#FAF6F0" stroke="rgba(198,164,103,0.38)" stroke-width="1.2" />
+            </svg>
+
+            <!-- Solapa superior animada -->
+            <div class="envelope-flap absolute inset-x-0 top-0 h-[128px] sm:h-[142px] pointer-events-none z-10">
+              <svg class="w-full h-full drop-shadow-sm" viewBox="0 0 340 140" preserveAspectRatio="none">
+                <polygon points="0,0 340,0 170,132" fill="#F6EFE4" stroke="rgba(198,164,103,0.45)" stroke-width="1.2" />
+              </svg>
+            </div>
+
+            <!-- Sello de Lacre Dorado Central -->
+            <div class="absolute left-1/2 top-[52%] -translate-x-1/2 -translate-y-1/2 z-20 w-14 h-14 sm:w-16 sm:h-16 rounded-full wax-seal flex items-center justify-center border-2 border-[#E9D3A3]/70 transition-transform duration-300 group-hover:scale-110">
+              <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#8F7038]/40 flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#FFFDF9] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Etiqueta caligráfica inferior en el sobre -->
+            <div class="absolute bottom-3 inset-x-0 text-center z-20 pointer-events-none">
+              <span class="font-hand text-lg sm:text-xl text-inkMuted tracking-wide">
+                Toca para abrir
+              </span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Contador de cartas y acceso rápido a escribir -->
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <span id="letters-count-badge" class="text-xs font-medium text-inkMuted bg-beige px-3.5 py-1.5 rounded-full border border-gold/25">
+            1 carta guardada
+          </span>
+          <button
+            type="button"
+            onclick="openLetterModal(true)"
+            class="inline-flex items-center gap-1.5 text-xs font-medium text-dustyRoseDark hover:text-dustyRose bg-dustyRoseLight/70 hover:bg-dustyRoseLight px-3.5 py-1.5 rounded-full border border-dustyRose/25 transition active:scale-95"
+          >
+            <span>+ Escribir nueva carta</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página romántico minimalista -->
+  <footer class="border-t border-gold/20 py-8 px-4 text-center bg-beige/40">
+    <p class="font-serif italic text-lg text-inkMuted">
+      Por mil vidas más juntos · 27 de julio de 2025
+    </p>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL 1: AGREGAR / REEMPLAZAR FOTO POLAROID
+  ====================================================================== -->
+  <div
+    id="photo-modal"
+    class="modal-backdrop fixed inset-0 z-50 bg-ink/45 backdrop-blur-xs flex items-center justify-center p-4"
+    onclick="handleBackdropClick(event, 'photo-modal')"
+  >
+    <div class="modal-panel bg-paper border border-gold/30 rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 sm:p-7 shadow-2xl">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-goldDark font-semibold">Álbum Polaroid</span>
+          <h3 id="photo-modal-title" class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+            Nuevo recuerdo
+          </h3>
+        </div>
+        <button
+          type="button"
+          onclick="closeModal('photo-modal')"
+          aria-label="Cerrar"
+          class="w-9 h-9 rounded-full bg-beige hover:bg-beigeDark flex items-center justify-center text-ink transition"
+        >
+          ✕
+        </button>
+      </div>
+
+      <form id="photo-form" onsubmit="handlePhotoSubmit(event)" class="space-y-4">
+        <input type="hidden" id="photo-edit-id" value="" />
+
+        <!-- Selector / Vista previa de imagen -->
+        <div>
+          <label class="block text-xs font-medium text-inkMuted mb-1.5">Fotografía</label>
+          <label
+            for="photo-file-input"
+            class="group relative flex flex-col items-center justify-center w-full h-52 rounded-2xl border-2 border-dashed border-gold/45 bg-beige/45 hover:bg-beige/80 cursor-pointer overflow-hidden transition"
+          >
+            <img
+              id="photo-preview-img"
+              src=""
+              alt="Vista previa"
+              class="hidden w-full h-full object-cover"
+            />
+            <div id="photo-upload-placeholder" class="flex flex-col items-center justify-center p-4 text-center">
+              <div class="w-11 h-11 rounded-full bg-paper border border-gold/30 flex items-center justify-center text-dustyRose mb-2 shadow-xs">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                </svg>
+              </div>
+              <span class="text-sm font-medium text-ink">Toca para elegir una foto</span>
+              <span class="text-xs text-inkMuted mt-0.5">Desde tu galería o cámara</span>
+            </div>
+          </label>
+          <input
+            id="photo-file-input"
+            type="file"
+            accept="image/*"
+            onchange="handlePhotoFileSelect(event)"
+            class="hidden"
+          />
+        </div>
+
+        <!-- Fecha de la fotografía -->
+        <div>
+          <label for="photo-date-input" class="block text-xs font-medium text-inkMuted mb-1.5">
+            Fecha de la foto
+          </label>
+          <input
+            id="photo-date-input"
+            type="text"
+            required
+            maxlength="35"
+            placeholder="Ej: 27 de julio, 2025"
+            class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 text-sm text-ink placeholder:text-inkMuted/60 focus:outline-none focus:border-dustyRose focus:bg-paper transition"
+          />
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2.5">
+          <button
+            type="button"
+            onclick="closeModal('photo-modal')"
+            class="px-4 py-2.5 rounded-full text-sm font-medium text-inkMuted hover:bg-beige transition"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="px-6 py-2.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-sm font-medium shadow-sm transition active:scale-95"
+          >
+            Guardar Polaroid
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: AGREGAR / EDITAR CANCIÓN
+  ====================================================================== -->
+  <div
+    id="song-modal"
+    class="modal-backdrop fixed inset-0 z-50 bg-ink/45 backdrop-blur-xs flex items-center justify-center p-4"
+    onclick="handleBackdropClick(event, 'song-modal')"
+  >
+    <div class="modal-panel bg-paper border border-gold/30 rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 sm:p-7 shadow-2xl">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-goldDark font-semibold">Álbum de canciones</span>
+          <h3 id="song-modal-title" class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+            Añadir canción
+          </h3>
+        </div>
+        <button
+          type="button"
+          onclick="closeModal('song-modal')"
+          aria-label="Cerrar"
+          class="w-9 h-9 rounded-full bg-beige hover:bg-beigeDark flex items-center justify-center text-ink transition"
+        >
+          ✕
+        </button>
+      </div>
+
+      <form id="song-form" onsubmit="handleSongSubmit(event)" class="space-y-4">
+        <input type="hidden" id="song-edit-id" value="" />
+
+        <div>
+          <label for="song-title-input" class="block text-xs font-medium text-inkMuted mb-1.5">
+            Nombre de la canción
+          </label>
+          <input
+            id="song-title-input"
+            type="text"
+            required
+            maxlength="60"
+            placeholder="Ej: Mil vidas"
+            class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 text-sm text-ink placeholder:text-inkMuted/60 focus:outline-none focus:border-dustyRose focus:bg-paper transition"
+          />
+        </div>
+
+        <div>
+          <label for="song-artist-input" class="block text-xs font-medium text-inkMuted mb-1.5">
+            Artista
+          </label>
+          <input
+            id="song-artist-input"
+            type="text"
+            required
+            maxlength="60"
+            placeholder="Ej: Mora"
+            class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 text-sm text-ink placeholder:text-inkMuted/60 focus:outline-none focus:border-dustyRose focus:bg-paper transition"
+          />
+        </div>
+
+        <div>
+          <label for="song-link-input" class="block text-xs font-medium text-inkMuted mb-1.5">
+            Enlace de Spotify o YouTube <span class="text-inkMuted/70">(opcional)</span>
+          </label>
+          <input
+            id="song-link-input"
+            type="url"
+            placeholder="https://open.spotify.com/track/... o https://youtu.be/..."
+            class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 text-sm text-ink placeholder:text-inkMuted/60 focus:outline-none focus:border-dustyRose focus:bg-paper transition"
+          />
+          <p class="text-[11px] text-inkMuted mt-1">
+            Si pegas un link directo podrás reproducirla aquí mismo; si lo dejas vacío generaremos los botones directos automáticamente.
+          </p>
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-2.5">
+          <button
+            type="button"
+            onclick="closeModal('song-modal')"
+            class="px-4 py-2.5 rounded-full text-sm font-medium text-inkMuted hover:bg-beige transition"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="px-6 py-2.5 rounded-full bg-ink hover:bg-ink/90 text-cream text-sm font-medium shadow-sm transition active:scale-95"
+          >
+            Guardar canción
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: PAPEL DE CARTA (LEER, EDITAR Y ESCRIBIR NUEVAS CARTAS)
+  ====================================================================== -->
+  <div
+    id="letter-modal"
+    class="modal-backdrop fixed inset-0 z-50 bg-ink/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5"
+    onclick="handleBackdropClick(event, 'letter-modal')"
+  >
+    <div class="modal-panel paper-texture border border-gold/40 rounded-3xl w-full max-w-2xl max-h-[92vh] overflow-y-auto shadow-2xl relative">
+      <!-- Barra superior del modal de cartas -->
+      <div class="sticky top-0 z-20 bg-paper/95 backdrop-blur-sm border-b border-gold/20 px-5 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-gold"></span>
+          <span id="letter-modal-header-label" class="text-xs uppercase tracking-[0.18em] text-inkMuted font-semibold">
+            Carta 1 de 1
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            id="btn-new-letter-mode"
+            type="button"
+            onclick="switchLetterToCompose()"
+            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-xs font-medium transition active:scale-95"
+          >
+            <span>+ Escribir nueva carta</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="closeModal('letter-modal')"
+            aria-label="Cerrar carta"
+            class="w-9 h-9 rounded-full bg-beige hover:bg-beigeDark flex items-center justify-center text-ink transition"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- VISTA A: LECTURA DE CARTA -->
+      <div id="letter-read-view" class="p-6 sm:p-10">
+        <!-- Encabezado de la carta -->
+        <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-gold/25 pb-4 mb-6">
+          <div>
+            <p id="letter-view-date" class="font-hand text-xl text-dustyRoseDark">27 de julio de 2025</p>
+            <h3 id="letter-view-title" class="font-serif text-2xl sm:text-3xl font-semibold text-ink mt-0.5">
+              Para ti, en esta y mil vidas
+            </h3>
+          </div>
+          <button
+            type="button"
+            onclick="switchLetterToEdit()"
+            class="inline-flex items-center gap-1.5 text-xs font-medium text-inkMuted hover:text-ink bg-beige/80 hover:bg-beige px-3 py-1.5 rounded-full border border-gold/25 transition"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+            </svg>
+            <span>Editar carta</span>
+          </button>
+        </div>
+
+        <!-- Cuerpo manuscrito/editorial en papel rayado -->
+        <div
+          id="letter-view-body"
+          class="letter-lined font-serif text-lg sm:text-xl text-ink/95 whitespace-pre-line min-h-[220px] pb-4"
+        ></div>
+
+        <!-- Firma -->
+        <div class="mt-6 pt-4 border-t border-gold/20 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <span class="text-xs text-inkMuted block">Con todo mi amor,</span>
+            <p id="letter-view-author" class="font-hand text-2xl sm:text-3xl text-dustyRoseDark font-semibold">
+              Tuyo por siempre
+            </p>
+          </div>
+
+          <!-- Navegación entre cartas -->
+          <div class="flex items-center gap-2">
+            <button
+              id="btn-prev-letter"
+              type="button"
+              onclick="navigateLetter(-1)"
+              class="px-3.5 py-2 rounded-full bg-beige hover:bg-beigeDark/80 text-xs font-medium text-ink disabled:opacity-40 transition"
+            >
+              ‹ Anterior
+            </button>
+            <button
+              id="btn-next-letter"
+              type="button"
+              onclick="navigateLetter(1)"
+              class="px-3.5 py-2 rounded-full bg-beige hover:bg-beigeDark/80 text-xs font-medium text-ink disabled:opacity-40 transition"
+            >
+              Siguiente ›
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISTA B: ESCRIBIR O EDITAR CARTA -->
+      <form id="letter-compose-view" onsubmit="handleLetterSubmit(event)" class="hidden p-6 sm:p-10 space-y-4">
+        <input type="hidden" id="letter-form-id" value="" />
+
+        <div class="flex items-center justify-between border-b border-gold/25 pb-3">
+          <h3 id="letter-compose-heading" class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+            Escribir nueva carta
+          </h3>
+          <button
+            type="button"
+            onclick="cancelLetterCompose()"
+            class="text-xs font-medium text-inkMuted hover:text-ink underline"
+          >
+            Volver a lectura
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label for="letter-title-input" class="block text-xs font-medium text-inkMuted mb-1">
+              Título o encabezado
+            </label>
+            <input
+              id="letter-title-input"
+              type="text"
+              required
+              maxlength="80"
+              placeholder="Ej: Nuestro primer aniversario..."
+              class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 text-sm text-ink focus:outline-none focus:border-dustyRose focus:bg-paper"
+            />
+          </div>
+
+          <div>
+            <label for="letter-date-input" class="block text-xs font-medium text-inkMuted mb-1">
+              Fecha
+            </label>
+            <input
+              id="letter-date-input"
+              type="text"
+              required
+              maxlength="40"
+              placeholder="Ej: 23 de noviembre de 2026"
+              class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 text-sm text-ink focus:outline-none focus:border-dustyRose focus:bg-paper"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="letter-body-input" class="block text-xs font-medium text-inkMuted mb-1">
+            Tu mensaje
+          </label>
+          <textarea
+            id="letter-body-input"
+            rows="7"
+            required
+            placeholder="Escribe aquí todo lo que sientes..."
+            class="w-full px-4 py-3 rounded-2xl bg-beige/40 border border-gold/30 font-serif text-lg text-ink leading-relaxed focus:outline-none focus:border-dustyRose focus:bg-paper"
+          ></textarea>
+        </div>
+
+        <div>
+          <label for="letter-author-input" class="block text-xs font-medium text-inkMuted mb-1">
+            Firma (¿Quién escribe?)
+          </label>
+          <input
+            id="letter-author-input"
+            type="text"
+            required
+            maxlength="50"
+            placeholder="Ej: De tu novio / De tu novia / Tu nombre"
+            class="w-full px-4 py-2.5 rounded-xl bg-beige/50 border border-gold/30 font-hand text-xl text-ink focus:outline-none focus:border-dustyRose focus:bg-paper"
+          />
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2.5">
+          <button
+            type="button"
+            onclick="cancelLetterCompose()"
+            class="px-4 py-2.5 rounded-full text-sm font-medium text-inkMuted hover:bg-beige transition"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="px-6 py-2.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-sm font-medium shadow-sm transition active:scale-95"
+          >
+            Guardar carta en el sobre
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       LÓGICA DE LA APLICACIÓN (MODULAR Y LISTA PARA FIREBASE / SUPABASE)
+  ====================================================================== -->
+  <script>
+    /**
+     * =========================================================================
+     * 1. CAPA DE PERSISTENCIA ASÍNCRONA (StorageService)
+     * =========================================================================
+     * Diseñada con métodos asíncronos (Promises) para que migrar en el futuro
+     * a Firebase Firestore o Supabase solo requiera reemplazar el interior de
+     * estos métodos sin modificar la interfaz de usuario.
+     */
+    const StorageService = (() => {
+      const KEYS = {
+        PHOTOS: 'por_mil_vidas_v1_photos',
+        SONGS: 'por_mil_vidas_v1_songs',
+        LETTERS: 'por_mil_vidas_v1_letters',
+      };
+
+      // Datos iniciales por defecto (se cargan la primera vez)
+      const DEFAULT_PHOTOS = [
+        {
+          id: 'photo-sample-1',
+          imageUrl: 'https://placehold.co/600x600/EFE5D8/9A5A5E?text=27+de+Julio+2025%0AEl+comienzo',
+          date: '27 de julio, 2025',
+          isSample: true,
+        },
+        {
+          id: 'photo-sample-2',
+          imageUrl: 'https://placehold.co/600x600/F5E8E9/9A5A5E?text=Nuestras+Risas%0ACada+tarde+juntos',
+          date: '14 de agosto, 2025',
+          isSample: true,
+        },
+        {
+          id: 'photo-sample-3',
+          imageUrl: 'https://placehold.co/600x600/EDE2D0/8F7038?text=Nuestra+Aventura%0APor+mil+destinos',
+          date: '21 de septiembre, 2025',
+          isSample: true,
+        },
+        {
+          id: 'photo-sample-4',
+          imageUrl: 'https://placehold.co/600x600/F3ECE1/6F625D?text=T%C3%BA+y+Yo%0ASiempre+nosotros',
+          date: '15 de noviembre, 2025',
+          isSample: true,
+        },
+      ];
+
+      const DEFAULT_SONGS = [
+        {
+          id: 'song-default-1',
+          title: 'Mil vidas',
+          artist: 'Mora',
+          link: '',
+          accent: '#B57276',
+        },
+        {
+          id: 'song-default-2',
+          title: 'Eazt',
+          artist: 'Jay Wheeler',
+          link: '',
+          accent: '#9A7B42',
+        },
+        {
+          id: 'song-default-3',
+          title: 'Lifetime',
+          artist: 'Justin Bieber',
+          link: '',
+          accent: '#7C6A5E',
+        },
+        {
+          id: 'song-default-4',
+          title: 'Aiuni',
+          artist: 'Jay Wheeler',
+          link: '',
+          accent: '#A86468',
+        },
+        {
+          id: 'song-default-5',
+          title: 'Tú y yo',
+          artist: 'Beéle y Quevedo',
+          link: '',
+          accent: '#8F7038',
+        },
+        {
+          id: 'song-default-6',
+          title: 'Abrázame fuerte',
+          artist: 'Jay Wheeler',
+          link: '',
+          accent: '#6F5852',
+        },
+      ];
+
+      const DEFAULT_LETTERS = [
+        {
+          id: 'letter-default-1',
+          title: 'Para ti, en esta y mil vidas',
+          date: '27 de julio de 2025',
+          body: 'Desde aquel 27 de julio de 2025 entendí que los mejores lugares no son puntos en el mapa, sino cada instante que comparto contigo.\n\nGracias por tu risa, por tu paciencia, por abrazarme cuando el mundo va demasiado rápido y por hacer que cada día ordinario se sienta extraordinario.\n\nSi tuviera mil vidas para elegir, en las mil te volvería a buscar y te volvería a elegir sin dudarlo.',
+          author: 'Tuyo por siempre',
+        },
+      ];
+
+      function readCollection(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (!raw) {
+            localStorage.setItem(key, JSON.stringify(fallback));
+            return [...fallback];
+          }
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [...fallback];
+        } catch (_) {
+          return [...fallback];
+        }
+      }
+
+      function writeCollection(key, items) {
+        try {
+          localStorage.setItem(key, JSON.stringify(items));
+        } catch (err) {
+          throw new Error('No se pudo guardar en el navegador (espacio lleno). Intenta con una imagen más ligera.');
+        }
+      }
+
+      return {
+        async getPhotos() {
+          return readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS);
+        },
+        async savePhoto(photoData) {
+          const photos = readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS);
+          if (photoData.id) {
+            const idx = photos.findIndex((p) => p.id === photoData.id);
+            if (idx !== -1) {
+              photos[idx] = {
+                ...photos[idx],
+                imageUrl: photoData.imageUrl,
+                date: photoData.date,
+                isSample: false,
+              };
+            }
+          } else {
+            photos.push({
+              id: 'photo-' + Date.now(),
+              imageUrl: photoData.imageUrl,
+              date: photoData.date,
+              isSample: false,
+            });
+          }
+          writeCollection(KEYS.PHOTOS, photos);
+          return photos;
+        },
+        async deletePhoto(id) {
+          const photos = readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS).filter((p) => p.id !== id);
+          writeCollection(KEYS.PHOTOS, photos);
+          return photos;
+        },
+
+        async getSongs() {
+          return readCollection(KEYS.SONGS, DEFAULT_SONGS);
+        },
+        async saveSong(songData) {
+          const songs = readCollection(KEYS.SONGS, DEFAULT_SONGS);
+          const accents = ['#B57276', '#9A7B42', '#7C6A5E', '#A86468', '#8F7038', '#6F5852'];
+          if (songData.id) {
+            const idx = songs.findIndex((s) => s.id === songData.id);
+            if (idx !== -1) {
+              songs[idx] = {
+                ...songs[idx],
+                title: songData.title,
+                artist: songData.artist,
+                link: songData.link || '',
+              };
+            }
+          } else {
+            songs.push({
+              id: 'song-' + Date.now(),
+              title: songData.title,
+              artist: songData.artist,
+              link: songData.link || '',
+              accent: accents[songs.length % accents.length],
+            });
+          }
+          writeCollection(KEYS.SONGS, songs);
+          return songs;
+        },
+        async deleteSong(id) {
+          const songs = readCollection(KEYS.SONGS, DEFAULT_SONGS).filter((s) => s.id !== id);
+          writeCollection(KEYS.SONGS, songs);
+          return songs;
+        },
+
+        async getLetters() {
+          return readCollection(KEYS.LETTERS, DEFAULT_LETTERS);
+        },
+        async saveLetter(letterData) {
+          const letters = readCollection(KEYS.LETTERS, DEFAULT_LETTERS);
+          if (letterData.id) {
+            const idx = letters.findIndex((l) => l.id === letterData.id);
+            if (idx !== -1) {
+              letters[idx] = {
+                ...letters[idx],
+                title: letterData.title,
+                date: letterData.date,
+                body: letterData.body,
+                author: letterData.author,
+              };
+            }
+          } else {
+            letters.push({
+              id: 'letter-' + Date.now(),
+              title: letterData.title,
+              date: letterData.date,
+              body: letterData.body,
+              author: letterData.author,
+            });
+          }
+          writeCollection(KEYS.LETTERS, letters);
+          return letters;
+        },
+      };
+    })();
+
+    /**
+     * =========================================================================
+     * 2. ESTADO GLOBAL DE LA APLICACIÓN
+     * =========================================================================
+     */
+    const AppState = {
+      photos: [],
+      songs: [],
+      letters: [],
+      currentLetterIndex: 0,
+      pendingPhotoBase64: '',
+      pendingDeletePhotoId: null,
+      pendingDeleteSongId: null,
+    };
+
+    /**
+     * =========================================================================
+     * 3. UTILIDADES UI (TOASTS, MODALES, SANITIZACIÓN, CARRUSEL)
+     * =========================================================================
+     */
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      const isError = type === 'error';
+      toast.className = `pointer-events-auto px-4 py-3 rounded-2xl shadow-lg border text-xs sm:text-sm font-medium flex items-center gap-2.5 transition-all duration-300 transform translate-y-0 opacity-100 ${
+        isError
+          ? 'bg-red-50 border-red-200 text-red-800'
+          : 'bg-paper border-gold/40 text-ink'
+      }`;
+
+      toast.innerHTML = `
+        <span class="${isError ? 'text-red-500' : 'text-dustyRose'} text-base">${isError ? '!' : '♥'}</span>
+        <span>${escapeHTML(message)}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-8px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function handleBackdropClick(event, modalId) {
+      if (event.target && event.target.id === modalId) {
+        closeModal(modalId);
+      }
+    }
+
+    function scrollCarousel(carouselId, offset) {
+      const el = document.getElementById(carouselId);
+      if (!el) return;
+      el.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+
+    /**
+     * =========================================================================
+     * 4. RELOJ CONTADOR EN TIEMPO REAL (DESDE EL 27 DE JULIO DE 2025)
+     * =========================================================================
+     */
+    function startRelationshipCounter() {
+      const startDate = new Date(2025, 6, 27, 0, 0, 0); // 27 de julio de 2025, 00:00:00
+
+      function updateClock() {
+        const now = new Date();
+        if (now < startDate) return;
+
+        let years = now.getFullYear() - startDate.getFullYear();
+        let months = now.getMonth() - startDate.getMonth();
+        let days = now.getDate() - startDate.getDate();
+        let hours = now.getHours() - startDate.getHours();
+        let minutes = now.getMinutes() - startDate.getMinutes();
+        let seconds = now.getSeconds() - startDate.getSeconds();
+
+        if (seconds < 0) {
+          seconds += 60;
+          minutes -= 1;
+        }
+        if (minutes < 0) {
+          minutes += 60;
+          hours -= 1;
+        }
+        if (hours < 0) {
+          hours += 24;
+          days -= 1;
+        }
+        if (days < 0) {
+          const daysInPrevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+          days += daysInPrevMonth;
+          months -= 1;
+        }
+        if (months < 0) {
+          months += 12;
+          years -= 1;
+        }
+
+        const pad = (n) => String(n).padStart(2, '0');
+
+        document.getElementById('time-years').textContent = years;
+        document.getElementById('label-years').textContent = years === 1 ? 'Año' : 'Años';
+
+        document.getElementById('time-months').textContent = months;
+        document.getElementById('label-months').textContent = months === 1 ? 'Mes' : 'Meses';
+
+        document.getElementById('time-days').textContent = days;
+        document.getElementById('label-days').textContent = days === 1 ? 'Día' : 'Días';
+
+        document.getElementById('time-hours').textContent = pad(hours);
+        document.getElementById('label-hours').textContent = hours === 1 ? 'Hora' : 'Horas';
+
+        document.getElementById('time-minutes').textContent = pad(minutes);
+        document.getElementById('label-minutes').textContent = minutes === 1 ? 'Minuto' : 'Minutos';
+
+        document.getElementById('time-seconds').textContent = pad(seconds);
+        document.getElementById('label-seconds').textContent = seconds === 1 ? 'Segundo' : 'Segundos';
+
+        const totalDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+        document.getElementById('total-days-caption').textContent =
+          `${totalDays.toLocaleString('es-ES')} días escribiendo nuestra historia juntos`;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    /**
+     * =========================================================================
+     * 5. ÁLBUM DE FOTOS (CARRUSEL POLAROID)
+     * =========================================================================
+     */
+    function renderPhotos() {
+      const container = document.getElementById('photos-carousel');
+      container.innerHTML = AppState.photos
+        .map((photo) => {
+          const isConfirmingDelete = AppState.pendingDeletePhotoId === photo.id;
+          return `
+            <article class="polaroid-card snap-center shrink-0 w-[255px] sm:w-[285px] bg-paper p-3.5 pb-5 rounded-md shadow-polaroid hover:shadow-polaroidHover border border-beigeDark/60 flex flex-col justify-between relative group">
+              
+              <!-- Contenedor cuadrado de fotografía -->
+              <div class="relative w-full aspect-square bg-beige overflow-hidden rounded-xs">
+                <img
+                  src="${escapeHTML(photo.imageUrl)}"
+                  alt="${escapeHTML(photo.date || 'Recuerdo Polaroid')}"
+                  onerror="this.src='https://placehold.co/600x600/F3ECE1/B57276?text=Nuestro+Recuerdo'"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+
+                <!-- Acciones discretas sobre la foto (Reemplazar / Eliminar) -->
+                <div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                  <button
+                    type="button"
+                    onclick="openPhotoModal('${photo.id}')"
+                    title="Reemplazar o editar foto"
+                    class="px-2.5 py-1 rounded-full bg-paper/90 hover:bg-paper text-ink text-[11px] font-medium shadow-sm backdrop-blur-xs transition"
+                  >
+                    ${photo.isSample ? 'Reemplazar' : 'Editar'}
+                  </button>
+
+                  <button
+                    type="button"
+                    onclick="requestDeletePhoto('${photo.id}')"
+                    title="Eliminar recuerdo"
+                    class="w-7 h-7 rounded-full ${isConfirmingDelete ? 'bg-red-600 text-white w-auto px-2.5' : 'bg-paper/90 hover:bg-red-50 text-inkMuted hover:text-red-600'} text-[11px] font-medium shadow-sm flex items-center justify-center transition"
+                  >
+                    ${isConfirmingDelete ? '¿Borrar?' : '✕'}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Espacio inferior clásico Polaroid únicamente con la fecha -->
+              <div class="pt-4 px-1 text-center">
+                <span class="block font-hand text-2xl text-ink tracking-wide">
+                  ${escapeHTML(photo.date || '27 de julio, 2025')}
+                </span>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+    }
+
+    function openPhotoModal(editId = '') {
+      const form = document.getElementById('photo-form');
+      form.reset();
+      AppState.pendingPhotoBase64 = '';
+      document.getElementById('photo-edit-id').value = editId;
+
+      const previewImg = document.getElementById('photo-preview-img');
+      const placeholder = document.getElementById('photo-upload-placeholder');
+      const modalTitle = document.getElementById('photo-modal-title');
+
+      if (editId) {
+        const existing = AppState.photos.find((p) => p.id === editId);
+        if (existing) {
+          modalTitle.textContent = existing.isSample ? 'Reemplazar ejemplo' : 'Editar recuerdo';
+          document.getElementById('photo-date-input').value = existing.date || '';
+          AppState.pendingPhotoBase64 = existing.imageUrl;
+          previewImg.src = existing.imageUrl;
+          previewImg.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+        }
+      } else {
+        modalTitle.textContent = 'Agregar nuevo recuerdo';
+        previewImg.src = '';
+        previewImg.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+      }
+
+      openModal('photo-modal');
+    }
+
+    /**
+     * Comprime la imagen seleccionada en el navegador usando <canvas> para garantizar
+     * que localStorage pueda almacenar numerosas fotografías sin saturarse.
+     */
+    function handlePhotoFileSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith('image/')) {
+        showToast('Por favor selecciona un archivo de imagen válido.', 'error');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const MAX_SIDE = 900;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height && width > MAX_SIDE) {
+            height = Math.round((height * MAX_SIDE) / width);
+            width = MAX_SIDE;
+          } else if (height > MAX_SIDE) {
+            width = Math.round((width * MAX_SIDE) / height);
+            height = MAX_SIDE;
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          AppState.pendingPhotoBase64 = compressedDataUrl;
+
+          const previewImg = document.getElementById('photo-preview-img');
+          const placeholder = document.getElementById('photo-upload-placeholder');
+          previewImg.src = compressedDataUrl;
+          previewImg.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function handlePhotoSubmit(event) {
+      event.preventDefault();
+      const editId = document.getElementById('photo-edit-id').value;
+      const date = document.getElementById('photo-date-input').value.trim();
+
+      if (!AppState.pendingPhotoBase64) {
+        showToast('Selecciona una foto desde tu dispositivo primero.', 'error');
+        return;
+      }
+
+      try {
+        AppState.photos = await StorageService.savePhoto({
+          id: editId || undefined,
+          imageUrl: AppState.pendingPhotoBase64,
+          date,
+        });
+        renderPhotos();
+        closeModal('photo-modal');
+        showToast(editId ? 'Recuerdo actualizado con amor' : 'Foto añadida al álbum Polaroid');
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    async function requestDeletePhoto(id) {
+      if (AppState.pendingDeletePhotoId !== id) {
+        AppState.pendingDeletePhotoId = id;
+        renderPhotos();
+        setTimeout(() => {
+          if (AppState.pendingDeletePhotoId === id) {
+            AppState.pendingDeletePhotoId = null;
+            renderPhotos();
+          }
+        }, 3500);
+        return;
+      }
+
+      AppState.pendingDeletePhotoId = null;
+      AppState.photos = await StorageService.deletePhoto(id);
+      renderPhotos();
+      showToast('Recuerdo eliminado');
+    }
+
+    /**
+     * =========================================================================
+     * 6. ÁLBUM DE CANCIONES (CARRUSEL MUSICAL + REPRODUCTOR EMBEBIDO)
+     * =========================================================================
+     */
+    function parseMediaEmbed(url) {
+      if (!url) return null;
+      try {
+        // Spotify: https://open.spotify.com/track/ID...
+        const spotifyMatch = url.match(/open\.spotify\.com\/(intl-[a-z]+\/)?(track|album|playlist)\/([a-zA-Z0-9]+)/);
+        if (spotifyMatch) {
+          return {
+            platform: 'spotify',
+            embedUrl: `https://open.spotify.com/embed/${spotifyMatch[2]}/${spotifyMatch[3]}?utm_source=generator&theme=0`,
+          };
+        }
+
+        // YouTube: youtube.com/watch?v=ID o youtu.be/ID
+        const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+        if (ytMatch) {
+          return {
+            platform: 'youtube',
+            embedUrl: `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1`,
+          };
+        }
+      } catch (_) {
+        return null;
+      }
+      return null;
+    }
+
+    function buildPlatformLinks(song) {
+      const query = encodeURIComponent(`${song.title} ${song.artist}`);
+      let spotifyUrl = `https://open.spotify.com/search/${query}`;
+      let youtubeUrl = `https://www.youtube.com/results?search_query=${query}`;
+
+      if (song.link) {
+        if (song.link.includes('spotify.com')) {
+          spotifyUrl = song.link;
+        } else if (song.link.includes('youtube.com') || song.link.includes('youtu.be')) {
+          youtubeUrl = song.link;
+        }
+      }
+
+      return { spotifyUrl, youtubeUrl };
+    }
+
+    function renderSongs() {
+      const container = document.getElementById('songs-carousel');
+
+      container.innerHTML = AppState.songs
+        .map((song, index) => {
+          const { spotifyUrl, youtubeUrl } = buildPlatformLinks(song);
+          const embedInfo = parseMediaEmbed(song.link);
+          const isConfirmingDelete = AppState.pendingDeleteSongId === song.id;
+
+          return `
+            <article class="song-card snap-center shrink-0 w-[265px] sm:w-[290px] bg-beige/75 hover:bg-paper border border-gold/25 rounded-3xl p-5 shadow-soft transition-all duration-300 flex flex-col justify-between relative group">
+              
+              <!-- Botones superiores discretos (editar link / quitar) -->
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[11px] font-semibold tracking-widest uppercase text-goldDark">
+                  Pista 0${index + 1}
+                </span>
+                <div class="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onclick="openSongModal('${song.id}')"
+                    title="Editar canción o añadir link"
+                    class="px-2 py-1 rounded-full text-[11px] text-inkMuted hover:text-ink hover:bg-beigeDark/60 transition"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    onclick="requestDeleteSong('${song.id}')"
+                    title="Quitar canción"
+                    class="px-2 py-1 rounded-full text-[11px] ${isConfirmingDelete ? 'bg-red-600 text-white' : 'text-inkMuted hover:text-red-600'} transition"
+                  >
+                    ${isConfirmingDelete ? '¿Quitar?' : '✕'}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Portada del álbum con disco de vinilo asomándose -->
+              <div class="relative w-36 h-36 mx-auto my-2 flex items-center justify-center">
+                <!-- Disco de vinilo detrás -->
+                <div class="vinyl-disc absolute right-0 w-32 h-32 rounded-full shadow-md"></div>
+
+                <!-- Carátula cuadrada frontal -->
+                <div
+                  class="relative z-10 w-32 h-32 -ml-5 rounded-2xl shadow-md border border-white/40 flex flex-col items-center justify-center p-3 text-center overflow-hidden"
+                  style="background: linear-gradient(135deg, ${song.accent || '#B57276'} 0%, #2E2522 100%);"
+                >
+                  <svg class="w-7 h-7 text-goldLight/90 mb-1.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                  </svg>
+                  <span class="font-serif italic text-xs text-cream/90 line-clamp-2 leading-tight">
+                    ${escapeHTML(song.title)}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Título y Artista -->
+              <div class="text-center mt-4 mb-5">
+                <h3 class="font-serif text-2xl font-semibold text-ink leading-tight line-clamp-1">
+                  ${escapeHTML(song.title)}
+                </h3>
+                <p class="text-xs sm:text-sm text-inkMuted mt-0.5 font-medium">
+                  ${escapeHTML(song.artist)}
+                </p>
+              </div>
+
+              <!-- Botones de reproducción / enlaces directos -->
+              <div class="space-y-2">
+                ${
+                  embedInfo
+                    ? `<button
+                        type="button"
+                        onclick="playEmbeddedSong('${song.id}')"
+                        class="w-full py-2 px-3 rounded-xl bg-dustyRose hover:bg-dustyRoseDark text-white text-xs font-medium flex items-center justify-center gap-1.5 shadow-xs transition active:scale-95"
+                      >
+                        <span>▶ Reproducir aquí</span>
+                      </button>`
+                    : ''
+                }
+
+                <div class="grid grid-cols-2 gap-2">
+                  <a
+                    href="${spotifyUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="py-2 px-2.5 rounded-xl bg-[#1DB954]/12 hover:bg-[#1DB954]/22 border border-[#1DB954]/30 text-[#15803D] text-xs font-medium flex items-center justify-center gap-1.5 transition active:scale-95"
+                  >
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    <span>Spotify</span>
+                  </a>
+
+                  <a
+                    href="${youtubeUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="py-2 px-2.5 rounded-xl bg-[#FF0000]/10 hover:bg-[#FF0000]/18 border border-[#FF0000]/25 text-[#B91C1C] text-xs font-medium flex items-center justify-center gap-1.5 transition active:scale-95"
+                  >
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <span>YouTube</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+    }
+
+    function playEmbeddedSong(songId) {
+      const song = AppState.songs.find((s) => s.id === songId);
+      if (!song) return;
+      const embedInfo = parseMediaEmbed(song.link);
+      if (!embedInfo) return;
+
+      const wrapper = document.getElementById('embedded-player-wrapper');
+      const container = document.getElementById('embedded-player-container');
+      const titleEl = document.getElementById('embedded-player-title');
+
+      titleEl.textContent = `${song.title} – ${song.artist}`;
+      const height = embedInfo.platform === 'spotify' ? '152' : '240';
+
+      container.innerHTML = `
+        <iframe
+          src="${embedInfo.embedUrl}"
+          width="100%"
+          height="${height}"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          class="rounded-2xl"
+        ></iframe>
+      `;
+
+      wrapper.classList.remove('hidden');
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeEmbeddedPlayer() {
+      const wrapper = document.getElementById('embedded-player-wrapper');
+      const container = document.getElementById('embedded-player-container');
+      container.innerHTML = '';
+      wrapper.classList.add('hidden');
+    }
+
+    function openSongModal(editId = '') {
+      const form = document.getElementById('song-form');
+      form.reset();
+      document.getElementById('song-edit-id').value = editId;
+      const titleHeader = document.getElementById('song-modal-title');
+
+      if (editId) {
+        const existing = AppState.songs.find((s) => s.id === editId);
+        if (existing) {
+          titleHeader.textContent = 'Editar canción';
+          document.getElementById('song-title-input').value = existing.title;
+          document.getElementById('song-artist-input').value = existing.artist;
+          document.getElementById('song-link-input').value = existing.link || '';
+        }
+      } else {
+        titleHeader.textContent = 'Añadir canción';
+      }
+
+      openModal('song-modal');
+    }
+
+    async function handleSongSubmit(event) {
+      event.preventDefault();
+      const editId = document.getElementById('song-edit-id').value;
+      const title = document.getElementById('song-title-input').value.trim();
+      const artist = document.getElementById('song-artist-input').value.trim();
+      const link = document.getElementById('song-link-input').value.trim();
+
+      try {
+        AppState.songs = await StorageService.saveSong({
+          id: editId || undefined,
+          title,
+          artist,
+          link,
+        });
+        renderSongs();
+        closeModal('song-modal');
+        showToast(editId ? 'Canción actualizada' : `"${title}" añadida a nuestra lista`);
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    async function requestDeleteSong(id) {
+      if (AppState.pendingDeleteSongId !== id) {
+        AppState.pendingDeleteSongId = id;
+        renderSongs();
+        setTimeout(() => {
+          if (AppState.pendingDeleteSongId === id) {
+            AppState.pendingDeleteSongId = null;
+            renderSongs();
+          }
+        }, 3500);
+        return;
+      }
+
+      AppState.pendingDeleteSongId = null;
+      AppState.songs = await StorageService.deleteSong(id);
+      renderSongs();
+      showToast('Canción quitada de la lista');
+    }
+
+    /**
+     * =========================================================================
+     * 7. SECCIÓN DE CARTAS (SOBRE INTERACTIVO Y PAPEL DE CARTA)
+     * =========================================================================
+     */
+    function updateLettersBadge() {
+      const count = AppState.letters.length;
+      const badge = document.getElementById('letters-count-badge');
+      badge.textContent = count === 1 ? '1 carta guardada' : `${count} cartas guardadas`;
+    }
+
+    function triggerEnvelopeOpen() {
+      const envelopeBtn = document.getElementById('envelope-trigger');
+      envelopeBtn.classList.add('envelope-opened');
+
+      setTimeout(() => {
+        openLetterModal(false);
+        setTimeout(() => {
+          envelopeBtn.classList.remove('envelope-opened');
+        }, 400);
+      }, 360);
+    }
+
+    function openLetterModal(startInCompose = false) {
+      openModal('letter-modal');
+      if (startInCompose) {
+        switchLetterToCompose();
+      } else {
+        showLetterReadView();
+      }
+    }
+
+    function showLetterReadView() {
+      document.getElementById('letter-read-view').classList.remove('hidden');
+      document.getElementById('letter-compose-view').classList.add('hidden');
+      document.getElementById('btn-new-letter-mode').classList.remove('hidden');
+
+      const total = AppState.letters.length;
+      if (AppState.currentLetterIndex >= total) {
+        AppState.currentLetterIndex = Math.max(0, total - 1);
+      }
+
+      const letter = AppState.letters[AppState.currentLetterIndex];
+      if (!letter) return;
+
+      document.getElementById('letter-modal-header-label').textContent =
+        `Carta ${AppState.currentLetterIndex + 1} de ${total}`;
+      document.getElementById('letter-view-date').textContent = letter.date;
+      document.getElementById('letter-view-title').textContent = letter.title;
+      document.getElementById('letter-view-body').textContent = letter.body;
+      document.getElementById('letter-view-author').textContent = letter.author;
+
+      document.getElementById('btn-prev-letter').disabled = AppState.currentLetterIndex === 0;
+      document.getElementById('btn-next-letter').disabled = AppState.currentLetterIndex >= total - 1;
+    }
+
+    function navigateLetter(delta) {
+      const nextIdx = AppState.currentLetterIndex + delta;
+      if (nextIdx >= 0 && nextIdx < AppState.letters.length) {
+        AppState.currentLetterIndex = nextIdx;
+        showLetterReadView();
+      }
+    }
+
+    function switchLetterToCompose() {
+      document.getElementById('letter-read-view').classList.add('hidden');
+      document.getElementById('letter-compose-view').classList.remove('hidden');
+      document.getElementById('btn-new-letter-mode').classList.add('hidden');
+
+      document.getElementById('letter-compose-heading').textContent = 'Escribir nueva carta';
+      document.getElementById('letter-modal-header-label').textContent = 'Nueva dedicatoria';
+      document.getElementById('letter-form-id').value = '';
+      document.getElementById('letter-title-input').value = '';
+      document.getElementById('letter-body-input').value = '';
+      document.getElementById('letter-author-input').value = '';
+
+      // Fecha actual formateada en español por defecto
+      const todayFormatted = new Date().toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      });
+      document.getElementById('letter-date-input').value = todayFormatted;
+    }
+
+    function switchLetterToEdit() {
+      const letter = AppState.letters[AppState.currentLetterIndex];
+      if (!letter) return;
+
+      document.getElementById('letter-read-view').classList.add('hidden');
+      document.getElementById('letter-compose-view').classList.remove('hidden');
+      document.getElementById('btn-new-letter-mode').classList.add('hidden');
+
+      document.getElementById('letter-compose-heading').textContent = 'Editar carta';
+      document.getElementById('letter-modal-header-label').textContent = 'Editando carta';
+      document.getElementById('letter-form-id').value = letter.id;
+      document.getElementById('letter-title-input').value = letter.title;
+      document.getElementById('letter-date-input').value = letter.date;
+      document.getElementById('letter-body-input').value = letter.body;
+      document.getElementById('letter-author-input').value = letter.author;
+    }
+
+    function cancelLetterCompose() {
+      showLetterReadView();
+    }
+
+    async function handleLetterSubmit(event) {
+      event.preventDefault();
+      const id = document.getElementById('letter-form-id').value;
+      const title = document.getElementById('letter-title-input').value.trim();
+      const date = document.getElementById('letter-date-input').value.trim();
+      const body = document.getElementById('letter-body-input').value.trim();
+      const author = document.getElementById('letter-author-input').value.trim();
+
+      try {
+        AppState.letters = await StorageService.saveLetter({
+          id: id || undefined,
+          title,
+          date,
+          body,
+          author,
+        });
+
+        if (!id) {
+          AppState.currentLetterIndex = AppState.letters.length - 1;
+        }
+
+        updateLettersBadge();
+        showLetterReadView();
+        showToast(id ? 'Carta actualizada' : 'Nueva carta guardada en el sobre ♥');
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    /**
+     * =========================================================================
+     * 8. INICIALIZACIÓN DE LA APLICACIÓN
+     * =========================================================================
+     */
+    async function initApp() {
+      startRelationshipCounter();
+
+      const [photos, songs, letters] = await Promise.all([
+        StorageService.getPhotos(),
+        StorageService.getSongs(),
+        StorageService.getLetters(),
+      ]);
+
+      AppState.photos = photos;
+      AppState.songs = songs;
+      AppState.letters = letters;
+
+      renderPhotos();
+      renderSongs();
+      updateLettersBadge();
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
