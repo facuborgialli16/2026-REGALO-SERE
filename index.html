@@ -239,13 +239,13 @@
     </h1>
 
     <p class="font-serif italic text-xl sm:text-2xl text-dustyRoseDark max-w-xl mx-auto mb-8 sm:mb-10">
-      «Para que puedas tener en un solo lugar todas las cosas lindas desde el primer día»
+      «Para que puedas tener todos nuestros recuerdos lindos en un solo lugar»
     </p>
 
     <!-- Reloj Contador en Tiempo Real -->
     <div class="bg-paper/90 backdrop-blur-sm border border-gold/25 rounded-3xl p-5 sm:p-8 shadow-soft max-w-3xl mx-auto">
       <p class="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-inkMuted font-medium mb-4 sm:mb-5">
-        Tiempo juntos
+        Tiempo caminando juntos
       </p>
 
       <div id="countdown-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2.5 sm:gap-3.5" aria-live="polite">
@@ -400,7 +400,7 @@
               Álbum de canciones
             </span>
             <h2 id="songs-heading" class="font-serif text-3xl sm:text-4xl font-semibold text-ink">
-              Canciones que nos nombran
+              Nuestras canciones 
             </h2>
           </div>
 
@@ -504,7 +504,7 @@
         Nuestro Buzón de Cartas
       </h2>
       <p class="text-sm text-inkMuted max-w-md mx-auto mb-10">
-        Toca el sobre para abrir nuestras cartas o escribir una nueva para el futuro.
+        Toca el sobre para abrir nuestras cartas o escribir una nueva.
       </p>
 
       <!-- Sobre de Carta Cerrado Interactivo -->
@@ -579,7 +579,7 @@
   <!-- Pie de página romántico minimalista -->
   <footer class="border-t border-gold/20 py-8 px-4 text-center bg-beige/40">
     <p class="font-serif italic text-lg text-inkMuted">
-      Por mil vidas más juntos · 27 de julio de 2025
+      Por mil vidas juntos · 27 de julio de 2025
     </p>
   </footer>
 
@@ -689,7 +689,7 @@
     <div class="modal-panel bg-paper border border-gold/30 rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 sm:p-7 shadow-2xl">
       <div class="flex items-center justify-between mb-5">
         <div>
-          <span class="text-[11px] uppercase tracking-[0.18em] text-goldDark font-semibold">Álbum de canciones</span>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-goldDark font-semibold">Banda Sonora</span>
           <h3 id="song-modal-title" class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
             Añadir canción
           </h3>
@@ -818,16 +818,31 @@
               Para ti, en esta y mil vidas
             </h3>
           </div>
-          <button
-            type="button"
-            onclick="switchLetterToEdit()"
-            class="inline-flex items-center gap-1.5 text-xs font-medium text-inkMuted hover:text-ink bg-beige/80 hover:bg-beige px-3 py-1.5 rounded-full border border-gold/25 transition"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
-            </svg>
-            <span>Editar carta</span>
-          </button>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              onclick="switchLetterToEdit()"
+              class="inline-flex items-center gap-1.5 text-xs font-medium text-inkMuted hover:text-ink bg-beige/80 hover:bg-beige px-3 py-1.5 rounded-full border border-gold/25 transition"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              </svg>
+              <span>Editar</span>
+            </button>
+
+            <button
+              id="btn-delete-letter"
+              type="button"
+              onclick="requestDeleteLetter()"
+              title="Eliminar esta carta"
+              class="inline-flex items-center gap-1.5 text-xs font-medium text-inkMuted hover:text-red-600 bg-beige/80 hover:bg-red-50 px-3 py-1.5 rounded-full border border-gold/25 transition"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+              <span id="btn-delete-letter-label">Borrar</span>
+            </button>
+          </div>
         </div>
 
         <!-- Cuerpo manuscrito/editorial en papel rayado -->
@@ -864,6 +879,28 @@
               Siguiente ›
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- VISTA VACÍA: CUANDO NO QUEDAN CARTAS EN EL SOBRE -->
+      <div id="letter-empty-view" class="hidden p-8 sm:p-14 text-center space-y-4">
+        <div class="w-14 h-14 mx-auto rounded-full bg-beige border border-gold/30 flex items-center justify-center text-dustyRose text-xl">
+          ✉
+        </div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+          El sobre está esperando tu historia
+        </h3>
+        <p class="text-sm text-inkMuted max-w-sm mx-auto">
+          Aún no hay cartas guardadas. Escribe la primera dedicatoria para guardarla aquí.
+        </p>
+        <div class="pt-2">
+          <button
+            type="button"
+            onclick="switchLetterToCompose()"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-sm font-medium shadow-sm transition active:scale-95"
+          >
+            <span>+ Escribir primera carta</span>
+          </button>
         </div>
       </div>
 
@@ -974,104 +1011,26 @@
      */
     const StorageService = (() => {
       const KEYS = {
-        PHOTOS: 'por_mil_vidas_v1_photos',
-        SONGS: 'por_mil_vidas_v1_songs',
-        LETTERS: 'por_mil_vidas_v1_letters',
+        PHOTOS: 'por_mil_vidas_v2_photos',
+        SONGS: 'por_mil_vidas_v2_songs',
+        LETTERS: 'por_mil_vidas_v2_letters',
       };
 
-      // Datos iniciales por defecto (se cargan la primera vez)
-      const DEFAULT_PHOTOS = [
-        {
-          id: 'photo-sample-1',
-          imageUrl: 'https://placehold.co/600x600/EFE5D8/9A5A5E?text=27+de+Julio+2025%0AEl+comienzo',
-          date: '27 de julio, 2025',
-          isSample: true,
-        },
-        {
-          id: 'photo-sample-2',
-          imageUrl: 'https://placehold.co/600x600/F5E8E9/9A5A5E?text=Nuestras+Risas%0ACada+tarde+juntos',
-          date: '14 de agosto, 2025',
-          isSample: true,
-        },
-        {
-          id: 'photo-sample-3',
-          imageUrl: 'https://placehold.co/600x600/EDE2D0/8F7038?text=Nuestra+Aventura%0APor+mil+destinos',
-          date: '21 de septiembre, 2025',
-          isSample: true,
-        },
-        {
-          id: 'photo-sample-4',
-          imageUrl: 'https://placehold.co/600x600/F3ECE1/6F625D?text=T%C3%BA+y+Yo%0ASiempre+nosotros',
-          date: '15 de noviembre, 2025',
-          isSample: true,
-        },
-      ];
+      // Datos iniciales por defecto (todos vacíos para comenzar desde cero)
+      const DEFAULT_PHOTOS = [];
 
-      const DEFAULT_SONGS = [
-        {
-          id: 'song-default-1',
-          title: 'Mil vidas',
-          artist: 'Mora',
-          link: '',
-          accent: '#B57276',
-        },
-        {
-          id: 'song-default-2',
-          title: 'Eazt',
-          artist: 'Jay Wheeler',
-          link: '',
-          accent: '#9A7B42',
-        },
-        {
-          id: 'song-default-3',
-          title: 'Lifetime',
-          artist: 'Justin Bieber',
-          link: '',
-          accent: '#7C6A5E',
-        },
-        {
-          id: 'song-default-4',
-          title: 'Aiuni',
-          artist: 'Jay Wheeler',
-          link: '',
-          accent: '#A86468',
-        },
-        {
-          id: 'song-default-5',
-          title: 'Tú y yo',
-          artist: 'Beéle y Quevedo',
-          link: '',
-          accent: '#8F7038',
-        },
-        {
-          id: 'song-default-6',
-          title: 'Abrázame fuerte',
-          artist: 'Jay Wheeler',
-          link: '',
-          accent: '#6F5852',
-        },
-      ];
+      const DEFAULT_SONGS = [];
 
-      const DEFAULT_LETTERS = [
-        {
-          id: 'letter-default-1',
-          title: 'Para ti, en esta y mil vidas',
-          date: '27 de julio de 2025',
-          body: 'Desde aquel 27 de julio de 2025 entendí que los mejores lugares no son puntos en el mapa, sino cada instante que comparto contigo.\n\nGracias por tu risa, por tu paciencia, por abrazarme cuando el mundo va demasiado rápido y por hacer que cada día ordinario se sienta extraordinario.\n\nSi tuviera mil vidas para elegir, en las mil te volvería a buscar y te volvería a elegir sin dudarlo.',
-          author: 'Tuyo por siempre',
-        },
-      ];
+      const DEFAULT_LETTERS = [];
 
       function readCollection(key, fallback) {
         try {
           const raw = localStorage.getItem(key);
-          if (!raw) {
-            localStorage.setItem(key, JSON.stringify(fallback));
-            return [...fallback];
-          }
+          if (!raw) return [...fallback];
           const parsed = JSON.parse(raw);
           return Array.isArray(parsed) ? parsed : [...fallback];
-        } catch (_) {
+        } catch (err) {
+          console.error('Error leyendo localStorage:', err);
           return [...fallback];
         }
       }
@@ -1079,8 +1038,11 @@
       function writeCollection(key, items) {
         try {
           localStorage.setItem(key, JSON.stringify(items));
+          return true;
         } catch (err) {
-          throw new Error('No se pudo guardar en el navegador (espacio lleno). Intenta con una imagen más ligera.');
+          console.error('Error guardando en localStorage:', err);
+          showToast('No se pudo guardar: memoria llena. Intenta con una foto más ligera.', 'error');
+          return false;
         }
       }
 
@@ -1088,96 +1050,20 @@
         async getPhotos() {
           return readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS);
         },
-        async savePhoto(photoData) {
-          const photos = readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS);
-          if (photoData.id) {
-            const idx = photos.findIndex((p) => p.id === photoData.id);
-            if (idx !== -1) {
-              photos[idx] = {
-                ...photos[idx],
-                imageUrl: photoData.imageUrl,
-                date: photoData.date,
-                isSample: false,
-              };
-            }
-          } else {
-            photos.push({
-              id: 'photo-' + Date.now(),
-              imageUrl: photoData.imageUrl,
-              date: photoData.date,
-              isSample: false,
-            });
-          }
-          writeCollection(KEYS.PHOTOS, photos);
-          return photos;
+        async savePhotos(photos) {
+          return writeCollection(KEYS.PHOTOS, photos);
         },
-        async deletePhoto(id) {
-          const photos = readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS).filter((p) => p.id !== id);
-          writeCollection(KEYS.PHOTOS, photos);
-          return photos;
-        },
-
         async getSongs() {
           return readCollection(KEYS.SONGS, DEFAULT_SONGS);
         },
-        async saveSong(songData) {
-          const songs = readCollection(KEYS.SONGS, DEFAULT_SONGS);
-          const accents = ['#B57276', '#9A7B42', '#7C6A5E', '#A86468', '#8F7038', '#6F5852'];
-          if (songData.id) {
-            const idx = songs.findIndex((s) => s.id === songData.id);
-            if (idx !== -1) {
-              songs[idx] = {
-                ...songs[idx],
-                title: songData.title,
-                artist: songData.artist,
-                link: songData.link || '',
-              };
-            }
-          } else {
-            songs.push({
-              id: 'song-' + Date.now(),
-              title: songData.title,
-              artist: songData.artist,
-              link: songData.link || '',
-              accent: accents[songs.length % accents.length],
-            });
-          }
-          writeCollection(KEYS.SONGS, songs);
-          return songs;
+        async saveSongs(songs) {
+          return writeCollection(KEYS.SONGS, songs);
         },
-        async deleteSong(id) {
-          const songs = readCollection(KEYS.SONGS, DEFAULT_SONGS).filter((s) => s.id !== id);
-          writeCollection(KEYS.SONGS, songs);
-          return songs;
-        },
-
         async getLetters() {
           return readCollection(KEYS.LETTERS, DEFAULT_LETTERS);
         },
-        async saveLetter(letterData) {
-          const letters = readCollection(KEYS.LETTERS, DEFAULT_LETTERS);
-          if (letterData.id) {
-            const idx = letters.findIndex((l) => l.id === letterData.id);
-            if (idx !== -1) {
-              letters[idx] = {
-                ...letters[idx],
-                title: letterData.title,
-                date: letterData.date,
-                body: letterData.body,
-                author: letterData.author,
-              };
-            }
-          } else {
-            letters.push({
-              id: 'letter-' + Date.now(),
-              title: letterData.title,
-              date: letterData.date,
-              body: letterData.body,
-              author: letterData.author,
-            });
-          }
-          writeCollection(KEYS.LETTERS, letters);
-          return letters;
+        async saveLetters(letters) {
+          return writeCollection(KEYS.LETTERS, letters);
         },
       };
     })();
@@ -1192,18 +1078,44 @@
       songs: [],
       letters: [],
       currentLetterIndex: 0,
-      pendingPhotoBase64: '',
-      pendingDeletePhotoId: null,
-      pendingDeleteSongId: null,
+      pendingPhotoDataUrl: '',
+      deleteConfirmTimers: {},
     };
 
     /**
      * =========================================================================
-     * 3. UTILIDADES UI (TOASTS, MODALES, SANITIZACIÓN, CARRUSEL)
+     * 3. UTILIDADES UI (TOASTS, ESCAPE HTML, MODALES Y CARRUSELES)
      * =========================================================================
      */
-    function escapeHTML(str) {
-      if (!str) return '';
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      const accentClass =
+        type === 'error'
+          ? 'border-red-300 bg-red-50 text-red-900'
+          : 'border-gold/40 bg-paper text-ink';
+
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl border shadow-soft text-xs sm:text-sm font-medium transition-all duration-300 opacity-0 translate-y-2 ${accentClass}`;
+      toast.innerHTML = `
+        <span class="text-dustyRose">${type === 'error' ? '!' : '♥'}</span>
+        <span>${escapeHtml(message)}</span>
+      `;
+
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove('opacity-0', 'translate-y-2');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', '-translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
       return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -1212,30 +1124,8 @@
         .replace(/'/g, '&#039;');
     }
 
-    function showToast(message, type = 'success') {
-      const container = document.getElementById('toast-container');
-      if (!container) return;
-
-      const toast = document.createElement('div');
-      const isError = type === 'error';
-      toast.className = `pointer-events-auto px-4 py-3 rounded-2xl shadow-lg border text-xs sm:text-sm font-medium flex items-center gap-2.5 transition-all duration-300 transform translate-y-0 opacity-100 ${
-        isError
-          ? 'bg-red-50 border-red-200 text-red-800'
-          : 'bg-paper border-gold/40 text-ink'
-      }`;
-
-      toast.innerHTML = `
-        <span class="${isError ? 'text-red-500' : 'text-dustyRose'} text-base">${isError ? '!' : '♥'}</span>
-        <span>${escapeHTML(message)}</span>
-      `;
-
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(-8px)';
-        setTimeout(() => toast.remove(), 300);
-      }, 3200);
+    function generateId(prefix = 'item') {
+      return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
     }
 
     function openModal(modalId) {
@@ -1250,6 +1140,11 @@
       if (!modal) return;
       modal.classList.remove('active');
       document.body.style.overflow = '';
+
+      if (modalId === 'letter-modal') {
+        const envelope = document.getElementById('envelope-trigger');
+        if (envelope) envelope.classList.remove('envelope-opened');
+      }
     }
 
     function handleBackdropClick(event, modalId) {
@@ -1269,150 +1164,175 @@
      * 4. RELOJ CONTADOR EN TIEMPO REAL (DESDE EL 27 DE JULIO DE 2025)
      * =========================================================================
      */
-    function startRelationshipCounter() {
-      const startDate = new Date(2025, 6, 27, 0, 0, 0); // 27 de julio de 2025, 00:00:00
+    const START_DATE = new Date(2025, 6, 27, 0, 0, 0); // 27 de julio de 2025
 
-      function updateClock() {
-        const now = new Date();
-        if (now < startDate) return;
+    function updateCountdown() {
+      const now = new Date();
+      let diffMs = now - START_DATE;
 
-        let years = now.getFullYear() - startDate.getFullYear();
-        let months = now.getMonth() - startDate.getMonth();
-        let days = now.getDate() - startDate.getDate();
-        let hours = now.getHours() - startDate.getHours();
-        let minutes = now.getMinutes() - startDate.getMinutes();
-        let seconds = now.getSeconds() - startDate.getSeconds();
-
-        if (seconds < 0) {
-          seconds += 60;
-          minutes -= 1;
-        }
-        if (minutes < 0) {
-          minutes += 60;
-          hours -= 1;
-        }
-        if (hours < 0) {
-          hours += 24;
-          days -= 1;
-        }
-        if (days < 0) {
-          const daysInPrevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-          days += daysInPrevMonth;
-          months -= 1;
-        }
-        if (months < 0) {
-          months += 12;
-          years -= 1;
-        }
-
-        const pad = (n) => String(n).padStart(2, '0');
-
-        document.getElementById('time-years').textContent = years;
-        document.getElementById('label-years').textContent = years === 1 ? 'Año' : 'Años';
-
-        document.getElementById('time-months').textContent = months;
-        document.getElementById('label-months').textContent = months === 1 ? 'Mes' : 'Meses';
-
-        document.getElementById('time-days').textContent = days;
-        document.getElementById('label-days').textContent = days === 1 ? 'Día' : 'Días';
-
-        document.getElementById('time-hours').textContent = pad(hours);
-        document.getElementById('label-hours').textContent = hours === 1 ? 'Hora' : 'Horas';
-
-        document.getElementById('time-minutes').textContent = pad(minutes);
-        document.getElementById('label-minutes').textContent = minutes === 1 ? 'Minuto' : 'Minutos';
-
-        document.getElementById('time-seconds').textContent = pad(seconds);
-        document.getElementById('label-seconds').textContent = seconds === 1 ? 'Segundo' : 'Segundos';
-
-        const totalDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-        document.getElementById('total-days-caption').textContent =
-          `${totalDays.toLocaleString('es-ES')} días escribiendo nuestra historia juntos`;
+      if (diffMs < 0) {
+        diffMs = 0;
       }
 
-      updateClock();
-      setInterval(updateClock, 1000);
+      // Cálculo exacto de años, meses y días de calendario
+      let years = now.getFullYear() - START_DATE.getFullYear();
+      let months = now.getMonth() - START_DATE.getMonth();
+      let days = now.getDate() - START_DATE.getDate();
+
+      if (days < 0) {
+        months -= 1;
+        const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        days += prevMonthDays;
+      }
+
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      if (years < 0) {
+        years = 0;
+        months = 0;
+        days = 0;
+      }
+
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+
+      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      document.getElementById('time-years').textContent = years;
+      document.getElementById('label-years').textContent = years === 1 ? 'Año' : 'Años';
+
+      document.getElementById('time-months').textContent = months;
+      document.getElementById('label-months').textContent = months === 1 ? 'Mes' : 'Meses';
+
+      document.getElementById('time-days').textContent = days;
+      document.getElementById('label-days').textContent = days === 1 ? 'Día' : 'Días';
+
+      document.getElementById('time-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('label-hours').textContent = hours === 1 ? 'Hora' : 'Horas';
+
+      document.getElementById('time-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('label-minutes').textContent = minutes === 1 ? 'Minuto' : 'Minutos';
+
+      document.getElementById('time-seconds').textContent = String(seconds).padStart(2, '0');
+      document.getElementById('label-seconds').textContent = seconds === 1 ? 'Segundo' : 'Segundos';
+
+      const caption = document.getElementById('total-days-caption');
+      if (caption) {
+        caption.textContent = `Son ${totalDays.toLocaleString('es-ES')} días escribiendo nuestra historia juntos`;
+      }
     }
 
     /**
      * =========================================================================
-     * 5. ÁLBUM DE FOTOS (CARRUSEL POLAROID)
+     * 5. ÁLBUM DE FOTOS (POLAROID)
      * =========================================================================
      */
     function renderPhotos() {
       const container = document.getElementById('photos-carousel');
+      if (!container) return;
+
+      if (!AppState.photos.length) {
+        container.classList.add('justify-center');
+        container.innerHTML = `
+          <div class="w-[260px] sm:w-[290px] bg-paper border-2 border-dashed border-gold/40 rounded-2xl p-4 pb-6 shadow-polaroid flex flex-col items-center text-center">
+            <div class="w-full aspect-square rounded-xl bg-beige/70 border border-gold/20 flex flex-col items-center justify-center p-5 text-inkMuted">
+              <div class="w-12 h-12 rounded-full bg-paper border border-gold/30 flex items-center justify-center text-dustyRose mb-3 shadow-xs">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+                </svg>
+              </div>
+              <p class="font-serif text-lg text-ink font-medium">Aún no hay fotos</p>
+              <p class="text-xs text-inkMuted mt-1">Sube vuestro primer recuerdo para estrenar el álbum Polaroid.</p>
+            </div>
+            <button
+              type="button"
+              onclick="openPhotoModal()"
+              class="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-xs font-medium shadow-xs transition active:scale-95"
+            >
+              <span>+ Agregar primera foto</span>
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.classList.remove('justify-center');
       container.innerHTML = AppState.photos
-        .map((photo) => {
-          const isConfirmingDelete = AppState.pendingDeletePhotoId === photo.id;
-          return `
-            <article class="polaroid-card snap-center shrink-0 w-[255px] sm:w-[285px] bg-paper p-3.5 pb-5 rounded-md shadow-polaroid hover:shadow-polaroidHover border border-beigeDark/60 flex flex-col justify-between relative group">
-              
-              <!-- Contenedor cuadrado de fotografía -->
-              <div class="relative w-full aspect-square bg-beige overflow-hidden rounded-xs">
-                <img
-                  src="${escapeHTML(photo.imageUrl)}"
-                  alt="${escapeHTML(photo.date || 'Recuerdo Polaroid')}"
-                  onerror="this.src='https://placehold.co/600x600/F3ECE1/B57276?text=Nuestro+Recuerdo'"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+        .map(
+          (photo) => `
+          <article class="polaroid-card snap-center shrink-0 w-[250px] sm:w-[275px] bg-paper p-3.5 pb-5 rounded-xl border border-gold/25 shadow-polaroid hover:shadow-polaroidHover relative group">
+            <!-- Contenedor cuadrado de foto -->
+            <div class="relative w-full aspect-square rounded-lg overflow-hidden bg-beige">
+              <img
+                src="${escapeHtml(photo.imageUrl)}"
+                alt="Recuerdo del ${escapeHtml(photo.date)}"
+                loading="lazy"
+                onerror="this.src='https://placehold.co/600x600/F3ECE1/6F625D?text=Recuerdo'"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
 
-                <!-- Acciones discretas sobre la foto (Reemplazar / Eliminar) -->
-                <div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                  <button
-                    type="button"
-                    onclick="openPhotoModal('${photo.id}')"
-                    title="Reemplazar o editar foto"
-                    class="px-2.5 py-1 rounded-full bg-paper/90 hover:bg-paper text-ink text-[11px] font-medium shadow-sm backdrop-blur-xs transition"
-                  >
-                    ${photo.isSample ? 'Reemplazar' : 'Editar'}
-                  </button>
-
-                  <button
-                    type="button"
-                    onclick="requestDeletePhoto('${photo.id}')"
-                    title="Eliminar recuerdo"
-                    class="w-7 h-7 rounded-full ${isConfirmingDelete ? 'bg-red-600 text-white w-auto px-2.5' : 'bg-paper/90 hover:bg-red-50 text-inkMuted hover:text-red-600'} text-[11px] font-medium shadow-sm flex items-center justify-center transition"
-                  >
-                    ${isConfirmingDelete ? '¿Borrar?' : '✕'}
-                  </button>
-                </div>
+              <!-- Acciones discretas al pasar o tocar -->
+              <div class="absolute top-2 right-2 flex items-center gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                <button
+                  type="button"
+                  onclick="openPhotoModal('${escapeHtml(photo.id)}')"
+                  title="Cambiar foto o fecha"
+                  class="w-8 h-8 rounded-full bg-paper/90 hover:bg-paper text-ink shadow-sm flex items-center justify-center text-xs transition"
+                >
+                  ✎
+                </button>
+                <button
+                  type="button"
+                  onclick="requestDeletePhoto('${escapeHtml(photo.id)}', this)"
+                  title="Eliminar recuerdo"
+                  class="px-2.5 h-8 rounded-full bg-paper/90 hover:bg-red-50 text-inkMuted hover:text-red-600 shadow-sm flex items-center justify-center text-xs font-medium transition"
+                >
+                  ✕
+                </button>
               </div>
+            </div>
 
-              <!-- Espacio inferior clásico Polaroid únicamente con la fecha -->
-              <div class="pt-4 px-1 text-center">
-                <span class="block font-hand text-2xl text-ink tracking-wide">
-                  ${escapeHTML(photo.date || '27 de julio, 2025')}
-                </span>
-              </div>
-            </article>
-          `;
-        })
+            <!-- Pie Polaroid: Únicamente fecha en estilo manuscrito -->
+            <div class="pt-3.5 px-1 text-center">
+              <p class="font-hand text-xl sm:text-2xl text-ink tracking-wide">
+                ${escapeHtml(photo.date)}
+              </p>
+            </div>
+          </article>
+        `
+        )
         .join('');
     }
 
     function openPhotoModal(editId = '') {
       const form = document.getElementById('photo-form');
-      form.reset();
-      AppState.pendingPhotoBase64 = '';
-      document.getElementById('photo-edit-id').value = editId;
-
+      const titleEl = document.getElementById('photo-modal-title');
+      const editIdInput = document.getElementById('photo-edit-id');
+      const dateInput = document.getElementById('photo-date-input');
       const previewImg = document.getElementById('photo-preview-img');
       const placeholder = document.getElementById('photo-upload-placeholder');
-      const modalTitle = document.getElementById('photo-modal-title');
+
+      form.reset();
+      AppState.pendingPhotoDataUrl = '';
+      editIdInput.value = editId;
 
       if (editId) {
         const existing = AppState.photos.find((p) => p.id === editId);
         if (existing) {
-          modalTitle.textContent = existing.isSample ? 'Reemplazar ejemplo' : 'Editar recuerdo';
-          document.getElementById('photo-date-input').value = existing.date || '';
-          AppState.pendingPhotoBase64 = existing.imageUrl;
+          titleEl.textContent = 'Editar recuerdo';
+          dateInput.value = existing.date;
+          AppState.pendingPhotoDataUrl = existing.imageUrl;
           previewImg.src = existing.imageUrl;
           previewImg.classList.remove('hidden');
           placeholder.classList.add('hidden');
         }
       } else {
-        modalTitle.textContent = 'Agregar nuevo recuerdo';
+        titleEl.textContent = 'Nuevo recuerdo';
         previewImg.src = '';
         previewImg.classList.add('hidden');
         placeholder.classList.remove('hidden');
@@ -1421,10 +1341,6 @@
       openModal('photo-modal');
     }
 
-    /**
-     * Comprime la imagen seleccionada en el navegador usando <canvas> para garantizar
-     * que localStorage pueda almacenar numerosas fotografías sin saturarse.
-     */
     function handlePhotoFileSelect(event) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
@@ -1435,19 +1351,22 @@
       }
 
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = function (loadEvent) {
         const img = new Image();
-        img.onload = () => {
-          const MAX_SIDE = 900;
+        img.onload = function () {
+          // Redimensionar y comprimir suavemente para proteger el límite de localStorage
+          const MAX_DIM = 900;
           let width = img.width;
           let height = img.height;
 
-          if (width > height && width > MAX_SIDE) {
-            height = Math.round((height * MAX_SIDE) / width);
-            width = MAX_SIDE;
-          } else if (height > MAX_SIDE) {
-            width = Math.round((width * MAX_SIDE) / height);
-            height = MAX_SIDE;
+          if (width > MAX_DIM || height > MAX_DIM) {
+            if (width > height) {
+              height = Math.round((height * MAX_DIM) / width);
+              width = MAX_DIM;
+            } else {
+              width = Math.round((width * MAX_DIM) / height);
+              height = MAX_DIM;
+            }
           }
 
           const canvas = document.createElement('canvas');
@@ -1457,7 +1376,7 @@
           ctx.drawImage(img, 0, 0, width, height);
 
           const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
-          AppState.pendingPhotoBase64 = compressedDataUrl;
+          AppState.pendingPhotoDataUrl = compressedDataUrl;
 
           const previewImg = document.getElementById('photo-preview-img');
           const placeholder = document.getElementById('photo-upload-placeholder');
@@ -1465,7 +1384,7 @@
           previewImg.classList.remove('hidden');
           placeholder.classList.add('hidden');
         };
-        img.src = e.target.result;
+        img.src = loadEvent.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -1473,196 +1392,233 @@
     async function handlePhotoSubmit(event) {
       event.preventDefault();
       const editId = document.getElementById('photo-edit-id').value;
-      const date = document.getElementById('photo-date-input').value.trim();
+      const dateValue = document.getElementById('photo-date-input').value.trim();
 
-      if (!AppState.pendingPhotoBase64) {
-        showToast('Selecciona una foto desde tu dispositivo primero.', 'error');
+      if (!AppState.pendingPhotoDataUrl) {
+        showToast('Selecciona una fotografía primero.', 'error');
         return;
       }
 
-      try {
-        AppState.photos = await StorageService.savePhoto({
-          id: editId || undefined,
-          imageUrl: AppState.pendingPhotoBase64,
-          date,
+      if (!dateValue) {
+        showToast('Escribe la fecha de la fotografía.', 'error');
+        return;
+      }
+
+      let updatedPhotos = [...AppState.photos];
+
+      if (editId) {
+        updatedPhotos = updatedPhotos.map((photo) =>
+          photo.id === editId
+            ? { ...photo, imageUrl: AppState.pendingPhotoDataUrl, date: dateValue }
+            : photo
+        );
+      } else {
+        updatedPhotos.unshift({
+          id: generateId('photo'),
+          imageUrl: AppState.pendingPhotoDataUrl,
+          date: dateValue,
         });
+      }
+
+      const saved = await StorageService.savePhotos(updatedPhotos);
+      if (saved) {
+        AppState.photos = updatedPhotos;
         renderPhotos();
         closeModal('photo-modal');
-        showToast(editId ? 'Recuerdo actualizado con amor' : 'Foto añadida al álbum Polaroid');
-      } catch (err) {
-        showToast(err.message, 'error');
+        showToast(editId ? 'Recuerdo actualizado' : 'Recuerdo guardado en el álbum');
       }
     }
 
-    async function requestDeletePhoto(id) {
-      if (AppState.pendingDeletePhotoId !== id) {
-        AppState.pendingDeletePhotoId = id;
-        renderPhotos();
-        setTimeout(() => {
-          if (AppState.pendingDeletePhotoId === id) {
-            AppState.pendingDeletePhotoId = null;
-            renderPhotos();
-          }
-        }, 3500);
+    async function requestDeletePhoto(photoId, btnEl) {
+      const key = `photo_${photoId}`;
+      if (btnEl.dataset.confirming !== 'true') {
+        btnEl.dataset.confirming = 'true';
+        btnEl.textContent = '¿Borrar?';
+        btnEl.classList.add('bg-red-600', 'text-white');
+        btnEl.classList.remove('bg-paper/90', 'text-inkMuted');
+
+        clearTimeout(AppState.deleteConfirmTimers[key]);
+        AppState.deleteConfirmTimers[key] = setTimeout(() => {
+          btnEl.dataset.confirming = 'false';
+          btnEl.textContent = '✕';
+          btnEl.classList.remove('bg-red-600', 'text-white');
+          btnEl.classList.add('bg-paper/90', 'text-inkMuted');
+        }, 3200);
         return;
       }
 
-      AppState.pendingDeletePhotoId = null;
-      AppState.photos = await StorageService.deletePhoto(id);
-      renderPhotos();
-      showToast('Recuerdo eliminado');
+      clearTimeout(AppState.deleteConfirmTimers[key]);
+      const updated = AppState.photos.filter((p) => p.id !== photoId);
+      const saved = await StorageService.savePhotos(updated);
+      if (saved) {
+        AppState.photos = updated;
+        renderPhotos();
+        showToast('Fotografía eliminada');
+      }
     }
 
     /**
      * =========================================================================
-     * 6. ÁLBUM DE CANCIONES (CARRUSEL MUSICAL + REPRODUCTOR EMBEBIDO)
+     * 6. ÁLBUM DE CANCIONES (CARRUSEL MUSICAL)
      * =========================================================================
      */
-    function parseMediaEmbed(url) {
+    const SONG_GRADIENTS = [
+      'from-[#B57276] to-[#7B4B4E]',
+      'from-[#C6A467] to-[#8A6D3B]',
+      'from-[#8D7B74] to-[#564944]',
+      'from-[#A86B79] to-[#6B3F4A]',
+      'from-[#B39264] to-[#765D3B]',
+    ];
+
+    function parseEmbedInfo(url) {
       if (!url) return null;
-      try {
-        // Spotify: https://open.spotify.com/track/ID...
-        const spotifyMatch = url.match(/open\.spotify\.com\/(intl-[a-z]+\/)?(track|album|playlist)\/([a-zA-Z0-9]+)/);
-        if (spotifyMatch) {
-          return {
-            platform: 'spotify',
-            embedUrl: `https://open.spotify.com/embed/${spotifyMatch[2]}/${spotifyMatch[3]}?utm_source=generator&theme=0`,
-          };
-        }
+      const trimmed = url.trim();
 
-        // YouTube: youtube.com/watch?v=ID o youtu.be/ID
-        const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-        if (ytMatch) {
-          return {
-            platform: 'youtube',
-            embedUrl: `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1`,
-          };
-        }
-      } catch (_) {
-        return null;
+      // Spotify track/album/playlist
+      const spotifyMatch = trimmed.match(
+        /open\.spotify\.com\/(?:intl-[a-z]{2}\/)?(track|album|playlist)\/([a-zA-Z0-9]+)/
+      );
+      if (spotifyMatch) {
+        return {
+          provider: 'spotify',
+          embedUrl: `https://open.spotify.com/embed/${spotifyMatch[1]}/${spotifyMatch[2]}?utm_source=generator&theme=0`,
+          height: 152,
+        };
       }
+
+      // YouTube watch / youtu.be / shorts
+      const ytMatch = trimmed.match(
+        /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      );
+      if (ytMatch) {
+        return {
+          provider: 'youtube',
+          embedUrl: `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1`,
+          height: 220,
+        };
+      }
+
       return null;
-    }
-
-    function buildPlatformLinks(song) {
-      const query = encodeURIComponent(`${song.title} ${song.artist}`);
-      let spotifyUrl = `https://open.spotify.com/search/${query}`;
-      let youtubeUrl = `https://www.youtube.com/results?search_query=${query}`;
-
-      if (song.link) {
-        if (song.link.includes('spotify.com')) {
-          spotifyUrl = song.link;
-        } else if (song.link.includes('youtube.com') || song.link.includes('youtu.be')) {
-          youtubeUrl = song.link;
-        }
-      }
-
-      return { spotifyUrl, youtubeUrl };
     }
 
     function renderSongs() {
       const container = document.getElementById('songs-carousel');
+      if (!container) return;
 
+      if (!AppState.songs.length) {
+        container.classList.add('justify-center');
+        container.innerHTML = `
+          <div class="w-[265px] sm:w-[295px] bg-beige/75 border-2 border-dashed border-gold/40 rounded-3xl p-6 shadow-soft flex flex-col items-center text-center">
+            <div class="w-12 h-12 rounded-full bg-paper border border-gold/30 flex items-center justify-center text-dustyRose mb-3 shadow-xs">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+              </svg>
+            </div>
+            <p class="font-serif text-xl text-ink font-medium leading-snug">
+              Aún no hay canciones
+            </p>
+            <p class="text-xs text-inkMuted mt-1">
+              Añade vuestra primera canción especial para crear la banda sonora.
+            </p>
+            <button
+              type="button"
+              onclick="openSongModal()"
+              class="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ink hover:bg-ink/90 text-cream text-xs font-medium shadow-xs transition active:scale-95"
+            >
+              <span>+ Agregar primera canción</span>
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.classList.remove('justify-center');
       container.innerHTML = AppState.songs
         .map((song, index) => {
-          const { spotifyUrl, youtubeUrl } = buildPlatformLinks(song);
-          const embedInfo = parseMediaEmbed(song.link);
-          const isConfirmingDelete = AppState.pendingDeleteSongId === song.id;
+          const gradient = SONG_GRADIENTS[index % SONG_GRADIENTS.length];
+          const query = encodeURIComponent(`${song.title} ${song.artist}`);
+          const spotifyUrl =
+            song.link && song.link.includes('spotify.com')
+              ? song.link
+              : `https://open.spotify.com/search/${query}`;
+          const youtubeUrl =
+            song.link && (song.link.includes('youtube.com') || song.link.includes('youtu.be'))
+              ? song.link
+              : `https://www.youtube.com/results?search_query=${query}`;
+          const embedInfo = parseEmbedInfo(song.link);
 
           return `
-            <article class="song-card snap-center shrink-0 w-[265px] sm:w-[290px] bg-beige/75 hover:bg-paper border border-gold/25 rounded-3xl p-5 shadow-soft transition-all duration-300 flex flex-col justify-between relative group">
-              
-              <!-- Botones superiores discretos (editar link / quitar) -->
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-semibold tracking-widest uppercase text-goldDark">
-                  Pista 0${index + 1}
-                </span>
-                <div class="flex items-center gap-1">
-                  <button
-                    type="button"
-                    onclick="openSongModal('${song.id}')"
-                    title="Editar canción o añadir link"
-                    class="px-2 py-1 rounded-full text-[11px] text-inkMuted hover:text-ink hover:bg-beigeDark/60 transition"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    type="button"
-                    onclick="requestDeleteSong('${song.id}')"
-                    title="Quitar canción"
-                    class="px-2 py-1 rounded-full text-[11px] ${isConfirmingDelete ? 'bg-red-600 text-white' : 'text-inkMuted hover:text-red-600'} transition"
-                  >
-                    ${isConfirmingDelete ? '¿Quitar?' : '✕'}
-                  </button>
+            <article class="song-card snap-center shrink-0 w-[265px] sm:w-[285px] bg-paper border border-gold/25 rounded-3xl p-5 shadow-soft hover:shadow-polaroid transition-all duration-300 relative group flex flex-col justify-between">
+              <!-- Botón eliminar discreto -->
+              <button
+                type="button"
+                onclick="requestDeleteSong('${escapeHtml(song.id)}', this)"
+                title="Eliminar canción"
+                class="absolute top-3.5 right-3.5 z-10 px-2 h-7 rounded-full bg-beige/80 hover:bg-red-50 text-inkMuted hover:text-red-600 text-xs flex items-center justify-center opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition"
+              >
+                ✕
+              </button>
+
+              <div>
+                <!-- Portada estilo carátula + disco de vinilo -->
+                <div class="relative flex items-center justify-center py-2 mb-4">
+                  <!-- Disco vinilo detrás -->
+                  <div class="vinyl-disc w-28 h-28 rounded-full shadow-md absolute right-6"></div>
+                  <!-- Carátula frontal -->
+                  <div class="relative z-10 w-32 h-32 rounded-2xl bg-gradient-to-br ${gradient} shadow-md p-3.5 flex flex-col justify-between text-cream mr-8 border border-white/20">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-white/80 font-medium">
+                      Track ${String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <p class="font-serif italic text-lg leading-tight line-clamp-2 text-white">
+                        ${escapeHtml(song.title)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Título y artista -->
+                <div class="text-center px-1">
+                  <h3 class="font-serif text-2xl font-semibold text-ink leading-snug line-clamp-1">
+                    ${escapeHtml(song.title)}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-inkMuted font-medium mt-0.5 line-clamp-1">
+                    ${escapeHtml(song.artist)}
+                  </p>
                 </div>
               </div>
 
-              <!-- Portada del álbum con disco de vinilo asomándose -->
-              <div class="relative w-36 h-36 mx-auto my-2 flex items-center justify-center">
-                <!-- Disco de vinilo detrás -->
-                <div class="vinyl-disc absolute right-0 w-32 h-32 rounded-full shadow-md"></div>
-
-                <!-- Carátula cuadrada frontal -->
-                <div
-                  class="relative z-10 w-32 h-32 -ml-5 rounded-2xl shadow-md border border-white/40 flex flex-col items-center justify-center p-3 text-center overflow-hidden"
-                  style="background: linear-gradient(135deg, ${song.accent || '#B57276'} 0%, #2E2522 100%);"
-                >
-                  <svg class="w-7 h-7 text-goldLight/90 mb-1.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-                  </svg>
-                  <span class="font-serif italic text-xs text-cream/90 line-clamp-2 leading-tight">
-                    ${escapeHTML(song.title)}
-                  </span>
-                </div>
-              </div>
-
-              <!-- Título y Artista -->
-              <div class="text-center mt-4 mb-5">
-                <h3 class="font-serif text-2xl font-semibold text-ink leading-tight line-clamp-1">
-                  ${escapeHTML(song.title)}
-                </h3>
-                <p class="text-xs sm:text-sm text-inkMuted mt-0.5 font-medium">
-                  ${escapeHTML(song.artist)}
-                </p>
-              </div>
-
-              <!-- Botones de reproducción / enlaces directos -->
-              <div class="space-y-2">
+              <!-- Enlaces / Reproductor -->
+              <div class="mt-5 pt-3.5 border-t border-gold/20 flex flex-col gap-2">
                 ${
                   embedInfo
-                    ? `<button
-                        type="button"
-                        onclick="playEmbeddedSong('${song.id}')"
-                        class="w-full py-2 px-3 rounded-xl bg-dustyRose hover:bg-dustyRoseDark text-white text-xs font-medium flex items-center justify-center gap-1.5 shadow-xs transition active:scale-95"
-                      >
-                        <span>▶ Reproducir aquí</span>
-                      </button>`
+                    ? `
+                  <button
+                    type="button"
+                    onclick="playEmbeddedSong('${escapeHtml(song.id)}')"
+                    class="w-full py-2 px-3 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-xs font-medium flex items-center justify-center gap-1.5 shadow-xs transition active:scale-95"
+                  >
+                    <span>▶ Escuchar aquí</span>
+                  </button>
+                `
                     : ''
                 }
-
                 <div class="grid grid-cols-2 gap-2">
                   <a
-                    href="${spotifyUrl}"
+                    href="${escapeHtml(spotifyUrl)}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="py-2 px-2.5 rounded-xl bg-[#1DB954]/12 hover:bg-[#1DB954]/22 border border-[#1DB954]/30 text-[#15803D] text-xs font-medium flex items-center justify-center gap-1.5 transition active:scale-95"
+                    class="py-2 px-2.5 rounded-full bg-beige/80 hover:bg-[#1DB954]/15 text-ink hover:text-[#15843c] border border-gold/25 text-xs font-medium text-center transition"
                   >
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                    </svg>
-                    <span>Spotify</span>
+                    Spotify ↗
                   </a>
-
                   <a
-                    href="${youtubeUrl}"
+                    href="${escapeHtml(youtubeUrl)}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="py-2 px-2.5 rounded-xl bg-[#FF0000]/10 hover:bg-[#FF0000]/18 border border-[#FF0000]/25 text-[#B91C1C] text-xs font-medium flex items-center justify-center gap-1.5 transition active:scale-95"
+                    class="py-2 px-2.5 rounded-full bg-beige/80 hover:bg-red-500/10 text-ink hover:text-red-700 border border-gold/25 text-xs font-medium text-center transition"
                   >
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    <span>YouTube</span>
+                    YouTube ↗
                   </a>
                 </div>
               </div>
@@ -1672,31 +1628,95 @@
         .join('');
     }
 
+    function openSongModal() {
+      const form = document.getElementById('song-form');
+      if (form) form.reset();
+      document.getElementById('song-edit-id').value = '';
+      openModal('song-modal');
+    }
+
+    async function handleSongSubmit(event) {
+      event.preventDefault();
+      const title = document.getElementById('song-title-input').value.trim();
+      const artist = document.getElementById('song-artist-input').value.trim();
+      const link = document.getElementById('song-link-input').value.trim();
+
+      if (!title || !artist) {
+        showToast('Completa el nombre de la canción y el artista.', 'error');
+        return;
+      }
+
+      const newSong = {
+        id: generateId('song'),
+        title,
+        artist,
+        link,
+      };
+
+      const updatedSongs = [...AppState.songs, newSong];
+      const saved = await StorageService.saveSongs(updatedSongs);
+      if (saved) {
+        AppState.songs = updatedSongs;
+        renderSongs();
+        closeModal('song-modal');
+        showToast(`«${title}» añadida a vuestra playlist`);
+      }
+    }
+
+    async function requestDeleteSong(songId, btnEl) {
+      const key = `song_${songId}`;
+      if (btnEl.dataset.confirming !== 'true') {
+        btnEl.dataset.confirming = 'true';
+        btnEl.textContent = '¿Borrar?';
+        btnEl.classList.add('bg-red-600', 'text-white');
+        btnEl.classList.remove('bg-beige/80', 'text-inkMuted');
+
+        clearTimeout(AppState.deleteConfirmTimers[key]);
+        AppState.deleteConfirmTimers[key] = setTimeout(() => {
+          btnEl.dataset.confirming = 'false';
+          btnEl.textContent = '✕';
+          btnEl.classList.remove('bg-red-600', 'text-white');
+          btnEl.classList.add('bg-beige/80', 'text-inkMuted');
+        }, 3200);
+        return;
+      }
+
+      clearTimeout(AppState.deleteConfirmTimers[key]);
+      const updated = AppState.songs.filter((s) => s.id !== songId);
+      const saved = await StorageService.saveSongs(updated);
+      if (saved) {
+        AppState.songs = updated;
+        renderSongs();
+        showToast('Canción eliminada');
+      }
+    }
+
     function playEmbeddedSong(songId) {
       const song = AppState.songs.find((s) => s.id === songId);
       if (!song) return;
-      const embedInfo = parseMediaEmbed(song.link);
-      if (!embedInfo) return;
+
+      const embedInfo = parseEmbedInfo(song.link);
+      if (!embedInfo) {
+        showToast('Este enlace no soporta reproducción integrada.', 'error');
+        return;
+      }
 
       const wrapper = document.getElementById('embedded-player-wrapper');
-      const container = document.getElementById('embedded-player-container');
       const titleEl = document.getElementById('embedded-player-title');
+      const container = document.getElementById('embedded-player-container');
 
-      titleEl.textContent = `${song.title} – ${song.artist}`;
-      const height = embedInfo.platform === 'spotify' ? '152' : '240';
-
+      titleEl.textContent = `${song.title} — ${song.artist}`;
       container.innerHTML = `
         <iframe
-          src="${embedInfo.embedUrl}"
+          src="${escapeHtml(embedInfo.embedUrl)}"
           width="100%"
-          height="${height}"
+          height="${embedInfo.height}"
           frameborder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
           class="rounded-2xl"
         ></iframe>
       `;
-
       wrapper.classList.remove('hidden');
       wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
@@ -1704,92 +1724,35 @@
     function closeEmbeddedPlayer() {
       const wrapper = document.getElementById('embedded-player-wrapper');
       const container = document.getElementById('embedded-player-container');
-      container.innerHTML = '';
-      wrapper.classList.add('hidden');
-    }
-
-    function openSongModal(editId = '') {
-      const form = document.getElementById('song-form');
-      form.reset();
-      document.getElementById('song-edit-id').value = editId;
-      const titleHeader = document.getElementById('song-modal-title');
-
-      if (editId) {
-        const existing = AppState.songs.find((s) => s.id === editId);
-        if (existing) {
-          titleHeader.textContent = 'Editar canción';
-          document.getElementById('song-title-input').value = existing.title;
-          document.getElementById('song-artist-input').value = existing.artist;
-          document.getElementById('song-link-input').value = existing.link || '';
-        }
-      } else {
-        titleHeader.textContent = 'Añadir canción';
-      }
-
-      openModal('song-modal');
-    }
-
-    async function handleSongSubmit(event) {
-      event.preventDefault();
-      const editId = document.getElementById('song-edit-id').value;
-      const title = document.getElementById('song-title-input').value.trim();
-      const artist = document.getElementById('song-artist-input').value.trim();
-      const link = document.getElementById('song-link-input').value.trim();
-
-      try {
-        AppState.songs = await StorageService.saveSong({
-          id: editId || undefined,
-          title,
-          artist,
-          link,
-        });
-        renderSongs();
-        closeModal('song-modal');
-        showToast(editId ? 'Canción actualizada' : `"${title}" añadida a nuestra lista`);
-      } catch (err) {
-        showToast(err.message, 'error');
-      }
-    }
-
-    async function requestDeleteSong(id) {
-      if (AppState.pendingDeleteSongId !== id) {
-        AppState.pendingDeleteSongId = id;
-        renderSongs();
-        setTimeout(() => {
-          if (AppState.pendingDeleteSongId === id) {
-            AppState.pendingDeleteSongId = null;
-            renderSongs();
-          }
-        }, 3500);
-        return;
-      }
-
-      AppState.pendingDeleteSongId = null;
-      AppState.songs = await StorageService.deleteSong(id);
-      renderSongs();
-      showToast('Canción quitada de la lista');
+      if (container) container.innerHTML = '';
+      if (wrapper) wrapper.classList.add('hidden');
     }
 
     /**
      * =========================================================================
-     * 7. SECCIÓN DE CARTAS (SOBRE INTERACTIVO Y PAPEL DE CARTA)
+     * 7. SECCIÓN DE CARTAS (SOBRE INTERACTIVO Y VISOR DE CARTAS)
      * =========================================================================
      */
     function updateLettersBadge() {
-      const count = AppState.letters.length;
       const badge = document.getElementById('letters-count-badge');
-      badge.textContent = count === 1 ? '1 carta guardada' : `${count} cartas guardadas`;
+      if (!badge) return;
+      const count = AppState.letters.length;
+      if (count === 0) {
+        badge.textContent = 'Sin cartas aún';
+      } else if (count === 1) {
+        badge.textContent = '1 carta guardada';
+      } else {
+        badge.textContent = `${count} cartas guardadas`;
+      }
     }
 
     function triggerEnvelopeOpen() {
-      const envelopeBtn = document.getElementById('envelope-trigger');
-      envelopeBtn.classList.add('envelope-opened');
-
+      const envelope = document.getElementById('envelope-trigger');
+      if (envelope) {
+        envelope.classList.add('envelope-opened');
+      }
       setTimeout(() => {
         openLetterModal(false);
-        setTimeout(() => {
-          envelopeBtn.classList.remove('envelope-opened');
-        }, 400);
       }, 360);
     }
 
@@ -1803,50 +1766,82 @@
     }
 
     function showLetterReadView() {
-      document.getElementById('letter-read-view').classList.remove('hidden');
-      document.getElementById('letter-compose-view').classList.add('hidden');
-      document.getElementById('btn-new-letter-mode').classList.remove('hidden');
+      const readView = document.getElementById('letter-read-view');
+      const emptyView = document.getElementById('letter-empty-view');
+      const composeView = document.getElementById('letter-compose-view');
+      const headerLabel = document.getElementById('letter-modal-header-label');
+      const newBtn = document.getElementById('btn-new-letter-mode');
 
-      const total = AppState.letters.length;
-      if (AppState.currentLetterIndex >= total) {
-        AppState.currentLetterIndex = Math.max(0, total - 1);
+      composeView.classList.add('hidden');
+      newBtn.classList.remove('hidden');
+
+      if (!AppState.letters.length) {
+        readView.classList.add('hidden');
+        emptyView.classList.remove('hidden');
+        headerLabel.textContent = 'Buzón vacío';
+        return;
       }
 
-      const letter = AppState.letters[AppState.currentLetterIndex];
-      if (!letter) return;
+      emptyView.classList.add('hidden');
+      readView.classList.remove('hidden');
 
-      document.getElementById('letter-modal-header-label').textContent =
-        `Carta ${AppState.currentLetterIndex + 1} de ${total}`;
-      document.getElementById('letter-view-date').textContent = letter.date;
-      document.getElementById('letter-view-title').textContent = letter.title;
-      document.getElementById('letter-view-body').textContent = letter.body;
-      document.getElementById('letter-view-author').textContent = letter.author;
+      if (AppState.currentLetterIndex >= AppState.letters.length) {
+        AppState.currentLetterIndex = AppState.letters.length - 1;
+      }
+      if (AppState.currentLetterIndex < 0) {
+        AppState.currentLetterIndex = 0;
+      }
 
-      document.getElementById('btn-prev-letter').disabled = AppState.currentLetterIndex === 0;
-      document.getElementById('btn-next-letter').disabled = AppState.currentLetterIndex >= total - 1;
+      const current = AppState.letters[AppState.currentLetterIndex];
+      headerLabel.textContent = `Carta ${AppState.currentLetterIndex + 1} de ${AppState.letters.length}`;
+
+      document.getElementById('letter-view-date').textContent = current.date;
+      document.getElementById('letter-view-title').textContent = current.title;
+      document.getElementById('letter-view-body').textContent = current.body;
+      document.getElementById('letter-view-author').textContent = current.author;
+
+      // Reiniciar estado del botón borrar si estaba pendiente de confirmación
+      const delBtn = document.getElementById('btn-delete-letter');
+      const delLabel = document.getElementById('btn-delete-letter-label');
+      if (delBtn && delLabel) {
+        delBtn.dataset.confirming = 'false';
+        delLabel.textContent = 'Borrar';
+        delBtn.classList.remove('bg-red-600', 'text-white');
+      }
+
+      document.getElementById('btn-prev-letter').disabled = AppState.currentLetterIndex <= 0;
+      document.getElementById('btn-next-letter').disabled =
+        AppState.currentLetterIndex >= AppState.letters.length - 1;
     }
 
-    function navigateLetter(delta) {
-      const nextIdx = AppState.currentLetterIndex + delta;
-      if (nextIdx >= 0 && nextIdx < AppState.letters.length) {
-        AppState.currentLetterIndex = nextIdx;
+    function navigateLetter(step) {
+      const nextIndex = AppState.currentLetterIndex + step;
+      if (nextIndex >= 0 && nextIndex < AppState.letters.length) {
+        AppState.currentLetterIndex = nextIndex;
         showLetterReadView();
       }
     }
 
     function switchLetterToCompose() {
-      document.getElementById('letter-read-view').classList.add('hidden');
-      document.getElementById('letter-compose-view').classList.remove('hidden');
-      document.getElementById('btn-new-letter-mode').classList.add('hidden');
+      const readView = document.getElementById('letter-read-view');
+      const emptyView = document.getElementById('letter-empty-view');
+      const composeView = document.getElementById('letter-compose-view');
+      const newBtn = document.getElementById('btn-new-letter-mode');
+      const headerLabel = document.getElementById('letter-modal-header-label');
+
+      readView.classList.add('hidden');
+      emptyView.classList.add('hidden');
+      composeView.classList.remove('hidden');
+      newBtn.classList.add('hidden');
+      headerLabel.textContent = 'Nueva dedicatoria';
 
       document.getElementById('letter-compose-heading').textContent = 'Escribir nueva carta';
-      document.getElementById('letter-modal-header-label').textContent = 'Nueva dedicatoria';
       document.getElementById('letter-form-id').value = '';
       document.getElementById('letter-title-input').value = '';
       document.getElementById('letter-body-input').value = '';
       document.getElementById('letter-author-input').value = '';
 
-      // Fecha actual formateada en español por defecto
+      // Sugerir fecha actual en español
       const todayFormatted = new Date().toLocaleDateString('es-ES', {
         day: 'numeric',
         month: 'long',
@@ -1856,20 +1851,28 @@
     }
 
     function switchLetterToEdit() {
-      const letter = AppState.letters[AppState.currentLetterIndex];
-      if (!letter) return;
+      if (!AppState.letters.length) return;
+      const current = AppState.letters[AppState.currentLetterIndex];
+      if (!current) return;
 
-      document.getElementById('letter-read-view').classList.add('hidden');
-      document.getElementById('letter-compose-view').classList.remove('hidden');
-      document.getElementById('btn-new-letter-mode').classList.add('hidden');
+      const readView = document.getElementById('letter-read-view');
+      const emptyView = document.getElementById('letter-empty-view');
+      const composeView = document.getElementById('letter-compose-view');
+      const newBtn = document.getElementById('btn-new-letter-mode');
+      const headerLabel = document.getElementById('letter-modal-header-label');
+
+      readView.classList.add('hidden');
+      emptyView.classList.add('hidden');
+      composeView.classList.remove('hidden');
+      newBtn.classList.add('hidden');
+      headerLabel.textContent = 'Editando carta';
 
       document.getElementById('letter-compose-heading').textContent = 'Editar carta';
-      document.getElementById('letter-modal-header-label').textContent = 'Editando carta';
-      document.getElementById('letter-form-id').value = letter.id;
-      document.getElementById('letter-title-input').value = letter.title;
-      document.getElementById('letter-date-input').value = letter.date;
-      document.getElementById('letter-body-input').value = letter.body;
-      document.getElementById('letter-author-input').value = letter.author;
+      document.getElementById('letter-form-id').value = current.id;
+      document.getElementById('letter-title-input').value = current.title;
+      document.getElementById('letter-date-input').value = current.date;
+      document.getElementById('letter-body-input').value = current.body;
+      document.getElementById('letter-author-input').value = current.author;
     }
 
     function cancelLetterCompose() {
@@ -1878,40 +1881,87 @@
 
     async function handleLetterSubmit(event) {
       event.preventDefault();
-      const id = document.getElementById('letter-form-id').value;
+      const editId = document.getElementById('letter-form-id').value;
       const title = document.getElementById('letter-title-input').value.trim();
       const date = document.getElementById('letter-date-input').value.trim();
       const body = document.getElementById('letter-body-input').value.trim();
       const author = document.getElementById('letter-author-input').value.trim();
 
-      try {
-        AppState.letters = await StorageService.saveLetter({
-          id: id || undefined,
+      if (!title || !date || !body || !author) {
+        showToast('Por favor completa todos los campos de la carta.', 'error');
+        return;
+      }
+
+      let updatedLetters = [...AppState.letters];
+
+      if (editId) {
+        updatedLetters = updatedLetters.map((item) =>
+          item.id === editId ? { ...item, title, date, body, author } : item
+        );
+      } else {
+        updatedLetters.push({
+          id: generateId('letter'),
           title,
           date,
           body,
           author,
         });
+        AppState.currentLetterIndex = updatedLetters.length - 1;
+      }
 
-        if (!id) {
-          AppState.currentLetterIndex = AppState.letters.length - 1;
-        }
-
+      const saved = await StorageService.saveLetters(updatedLetters);
+      if (saved) {
+        AppState.letters = updatedLetters;
         updateLettersBadge();
         showLetterReadView();
-        showToast(id ? 'Carta actualizada' : 'Nueva carta guardada en el sobre ♥');
-      } catch (err) {
-        showToast(err.message, 'error');
+        showToast(editId ? 'Carta actualizada' : 'Carta guardada en el sobre');
+      }
+    }
+
+    async function requestDeleteLetter() {
+      if (!AppState.letters.length) return;
+      const delBtn = document.getElementById('btn-delete-letter');
+      const delLabel = document.getElementById('btn-delete-letter-label');
+      const key = 'delete_active_letter';
+
+      if (delBtn.dataset.confirming !== 'true') {
+        delBtn.dataset.confirming = 'true';
+        delLabel.textContent = '¿Confirmar?';
+        delBtn.classList.add('bg-red-600', 'text-white');
+
+        clearTimeout(AppState.deleteConfirmTimers[key]);
+        AppState.deleteConfirmTimers[key] = setTimeout(() => {
+          delBtn.dataset.confirming = 'false';
+          delLabel.textContent = 'Borrar';
+          delBtn.classList.remove('bg-red-600', 'text-white');
+        }, 3500);
+        return;
+      }
+
+      clearTimeout(AppState.deleteConfirmTimers[key]);
+      const target = AppState.letters[AppState.currentLetterIndex];
+      const updated = AppState.letters.filter((l) => l.id !== target.id);
+
+      const saved = await StorageService.saveLetters(updated);
+      if (saved) {
+        AppState.letters = updated;
+        if (AppState.currentLetterIndex >= updated.length) {
+          AppState.currentLetterIndex = Math.max(0, updated.length - 1);
+        }
+        updateLettersBadge();
+        showLetterReadView();
+        showToast('Carta eliminada');
       }
     }
 
     /**
      * =========================================================================
-     * 8. INICIALIZACIÓN DE LA APLICACIÓN
+     * 8. INICIALIZACIÓN AL CARGAR LA PÁGINA
      * =========================================================================
      */
     async function initApp() {
-      startRelationshipCounter();
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
 
       const [photos, songs, letters] = await Promise.all([
         StorageService.getPhotos(),
@@ -1928,7 +1978,7 @@
       updateLettersBadge();
     }
 
-    document.addEventListener('DOMContentLoaded', initApp);
+    window.addEventListener('DOMContentLoaded', initApp);
   </script>
 </body>
 </html>
