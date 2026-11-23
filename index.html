@@ -8,6 +8,9 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Supabase SDK v2 para sincronización en la nube -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <!-- Google Fonts: Cormorant Garamond (editorial), Plus Jakarta Sans (UI), Caveat (manuscrita) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -239,13 +242,13 @@
     </h1>
 
     <p class="font-serif italic text-xl sm:text-2xl text-dustyRoseDark max-w-xl mx-auto mb-8 sm:mb-10">
-      «Para que puedas tener todos nuestros recuerdos lindos en un solo lugar»
+      «Para que tengas todos nuestros recuerdos guardados en un solo lugar»
     </p>
 
     <!-- Reloj Contador en Tiempo Real -->
     <div class="bg-paper/90 backdrop-blur-sm border border-gold/25 rounded-3xl p-5 sm:p-8 shadow-soft max-w-3xl mx-auto">
       <p class="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-inkMuted font-medium mb-4 sm:mb-5">
-        Tiempo caminando juntos
+        Juntos hace
       </p>
 
       <div id="countdown-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2.5 sm:gap-3.5" aria-live="polite">
@@ -310,7 +313,7 @@
         <div class="flex flex-wrap items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
             <span class="text-[11px] uppercase tracking-[0.2em] text-goldDark font-semibold block mb-1">
-              Álbum de fotos
+              ÁLBUM DE FOTOS
             </span>
             <h2 id="photos-heading" class="font-serif text-3xl sm:text-4xl font-semibold text-ink">
               Nuestros Recuerdos
@@ -397,10 +400,10 @@
         <div class="flex flex-wrap items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
             <span class="text-[11px] uppercase tracking-[0.2em] text-goldDark font-semibold block mb-1">
-              Álbum de canciones
+              ÁLBUM DE CANCIONES
             </span>
             <h2 id="songs-heading" class="font-serif text-3xl sm:text-4xl font-semibold text-ink">
-              Nuestras canciones 
+              Nuestras canciones
             </h2>
           </div>
 
@@ -504,7 +507,7 @@
         Nuestro Buzón de Cartas
       </h2>
       <p class="text-sm text-inkMuted max-w-md mx-auto mb-10">
-        Toca el sobre para abrir nuestras cartas o escribir una nueva.
+        Toca el sobre  para abrir nuestras cartas o escribir una nueva.
       </p>
 
       <!-- Sobre de Carta Cerrado Interactivo -->
@@ -562,7 +565,7 @@
         <!-- Contador de cartas y acceso rápido a escribir -->
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <span id="letters-count-badge" class="text-xs font-medium text-inkMuted bg-beige px-3.5 py-1.5 rounded-full border border-gold/25">
-            1 carta guardada
+            Cargando cartas...
           </span>
           <button
             type="button"
@@ -668,6 +671,7 @@
             Cancelar
           </button>
           <button
+            id="photo-submit-btn"
             type="submit"
             class="px-6 py-2.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-sm font-medium shadow-sm transition active:scale-95"
           >
@@ -689,7 +693,7 @@
     <div class="modal-panel bg-paper border border-gold/30 rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 sm:p-7 shadow-2xl">
       <div class="flex items-center justify-between mb-5">
         <div>
-          <span class="text-[11px] uppercase tracking-[0.18em] text-goldDark font-semibold">Banda Sonora</span>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-goldDark font-semibold">ÁLBUM DE CANCIONES</span>
           <h3 id="song-modal-title" class="font-serif text-2xl sm:text-3xl font-semibold text-ink">
             Añadir canción
           </h3>
@@ -759,6 +763,7 @@
             Cancelar
           </button>
           <button
+            id="song-submit-btn"
             type="submit"
             class="px-6 py-2.5 rounded-full bg-ink hover:bg-ink/90 text-cream text-sm font-medium shadow-sm transition active:scale-95"
           >
@@ -987,6 +992,7 @@
             Cancelar
           </button>
           <button
+            id="letter-submit-btn"
             type="submit"
             class="px-6 py-2.5 rounded-full bg-dustyRose hover:bg-dustyRoseDark text-white text-sm font-medium shadow-sm transition active:scale-95"
           >
@@ -998,16 +1004,32 @@
   </div>
 
   <!-- =====================================================================
-       LÓGICA DE LA APLICACIÓN (MODULAR Y LISTA PARA FIREBASE / SUPABASE)
+       LÓGICA DE LA APLICACIÓN (SINCRONIZADA CON SUPABASE + RESPALDO LOCAL)
   ====================================================================== -->
   <script>
     /**
      * =========================================================================
-     * 1. CAPA DE PERSISTENCIA ASÍNCRONA (StorageService)
+     * 0. CONFIGURACIÓN DE SUPABASE (PEGA AQUÍ TUS 2 CLAVES DE SUPABASE)
      * =========================================================================
-     * Diseñada con métodos asíncronos (Promises) para que migrar en el futuro
-     * a Firebase Firestore o Supabase solo requiera reemplazar el interior de
-     * estos métodos sin modificar la interfaz de usuario.
+     */
+    const SUPABASE_URL = 'https://jarcaoljrcjjdlttduip.supabase.co/rest/v1/PEGA_AQUI_TU_PROJECT_URL';
+    const SUPABASE_ANON_KEY = 'sb_publishable_klkgBNAp0U1W5-1sRoaD1g_y0Z5Xxgm';
+
+    const isSupabaseConfigured =
+      SUPABASE_URL.startsWith('http') &&
+      SUPABASE_ANON_KEY.length > 20 &&
+      !SUPABASE_URL.includes('PEGA_AQUI') &&
+      !SUPABASE_ANON_KEY.includes('PEGA_AQUI');
+
+    const supabaseClient =
+      isSupabaseConfigured && window.supabase
+        ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+        : null;
+
+    /**
+     * =========================================================================
+     * 1. CAPA DE PERSISTENCIA ASÍNCRONA (StorageService -> Supabase + Local)
+     * =========================================================================
      */
     const StorageService = (() => {
       const KEYS = {
@@ -1016,14 +1038,11 @@
         LETTERS: 'por_mil_vidas_v2_letters',
       };
 
-      // Datos iniciales por defecto (todos vacíos para comenzar desde cero)
       const DEFAULT_PHOTOS = [];
-
       const DEFAULT_SONGS = [];
-
       const DEFAULT_LETTERS = [];
 
-      function readCollection(key, fallback) {
+      function readLocal(key, fallback) {
         try {
           const raw = localStorage.getItem(key);
           if (!raw) return [...fallback];
@@ -1035,35 +1054,157 @@
         }
       }
 
-      function writeCollection(key, items) {
+      function writeLocal(key, items) {
         try {
           localStorage.setItem(key, JSON.stringify(items));
           return true;
         } catch (err) {
           console.error('Error guardando en localStorage:', err);
-          showToast('No se pudo guardar: memoria llena. Intenta con una foto más ligera.', 'error');
+          return false;
+        }
+      }
+
+      async function syncTable(tableName, rows) {
+        if (!supabaseClient) return true;
+
+        try {
+          // 1. Obtener IDs actuales en Supabase para eliminar los borrados
+          const { data: existingRows, error: fetchError } = await supabaseClient
+            .from(tableName)
+            .select('id');
+
+          if (fetchError) throw fetchError;
+
+          const currentIds = new Set(rows.map((r) => r.id));
+          const idsToDelete = (existingRows || [])
+            .map((r) => r.id)
+            .filter((id) => !currentIds.has(id));
+
+          if (idsToDelete.length > 0) {
+            const { error: delError } = await supabaseClient
+              .from(tableName)
+              .delete()
+              .in('id', idsToDelete);
+            if (delError) throw delError;
+          }
+
+          // 2. Insertar o actualizar registros vigentes
+          if (rows.length > 0) {
+            const { error: upsertError } = await supabaseClient
+              .from(tableName)
+              .upsert(rows, { onConflict: 'id' });
+            if (upsertError) throw upsertError;
+          }
+
+          return true;
+        } catch (err) {
+          console.error(`Error sincronizando tabla ${tableName} con Supabase:`, err);
+          showToast('Error al sincronizar con la nube. Revisa tu conexión o claves.', 'error');
           return false;
         }
       }
 
       return {
         async getPhotos() {
-          return readCollection(KEYS.PHOTOS, DEFAULT_PHOTOS);
+          if (supabaseClient) {
+            try {
+              const { data, error } = await supabaseClient
+                .from('photos')
+                .select('*')
+                .order('created_at', { ascending: false });
+              if (error) throw error;
+              const mapped = (data || []).map((row) => ({
+                id: row.id,
+                imageUrl: row.image_url,
+                date: row.date,
+              }));
+              writeLocal(KEYS.PHOTOS, mapped);
+              return mapped;
+            } catch (err) {
+              console.error('Error cargando fotos desde Supabase:', err);
+            }
+          }
+          return readLocal(KEYS.PHOTOS, DEFAULT_PHOTOS);
         },
+
         async savePhotos(photos) {
-          return writeCollection(KEYS.PHOTOS, photos);
+          writeLocal(KEYS.PHOTOS, photos);
+          const rows = photos.map((p) => ({
+            id: p.id,
+            image_url: p.imageUrl,
+            date: p.date,
+          }));
+          return syncTable('photos', rows);
         },
+
         async getSongs() {
-          return readCollection(KEYS.SONGS, DEFAULT_SONGS);
+          if (supabaseClient) {
+            try {
+              const { data, error } = await supabaseClient
+                .from('songs')
+                .select('*')
+                .order('created_at', { ascending: true });
+              if (error) throw error;
+              const mapped = (data || []).map((row) => ({
+                id: row.id,
+                title: row.title,
+                artist: row.artist,
+                link: row.link || '',
+              }));
+              writeLocal(KEYS.SONGS, mapped);
+              return mapped;
+            } catch (err) {
+              console.error('Error cargando canciones desde Supabase:', err);
+            }
+          }
+          return readLocal(KEYS.SONGS, DEFAULT_SONGS);
         },
+
         async saveSongs(songs) {
-          return writeCollection(KEYS.SONGS, songs);
+          writeLocal(KEYS.SONGS, songs);
+          const rows = songs.map((s) => ({
+            id: s.id,
+            title: s.title,
+            artist: s.artist,
+            link: s.link || '',
+          }));
+          return syncTable('songs', rows);
         },
+
         async getLetters() {
-          return readCollection(KEYS.LETTERS, DEFAULT_LETTERS);
+          if (supabaseClient) {
+            try {
+              const { data, error } = await supabaseClient
+                .from('letters')
+                .select('*')
+                .order('created_at', { ascending: true });
+              if (error) throw error;
+              const mapped = (data || []).map((row) => ({
+                id: row.id,
+                title: row.title,
+                date: row.date,
+                body: row.body,
+                author: row.author,
+              }));
+              writeLocal(KEYS.LETTERS, mapped);
+              return mapped;
+            } catch (err) {
+              console.error('Error cargando cartas desde Supabase:', err);
+            }
+          }
+          return readLocal(KEYS.LETTERS, DEFAULT_LETTERS);
         },
+
         async saveLetters(letters) {
-          return writeCollection(KEYS.LETTERS, letters);
+          writeLocal(KEYS.LETTERS, letters);
+          const rows = letters.map((l) => ({
+            id: l.id,
+            title: l.title,
+            date: l.date,
+            body: l.body,
+            author: l.author,
+          }));
+          return syncTable('letters', rows);
         },
       };
     })();
@@ -1354,8 +1495,8 @@
       reader.onload = function (loadEvent) {
         const img = new Image();
         img.onload = function () {
-          // Redimensionar y comprimir suavemente para proteger el límite de localStorage
-          const MAX_DIM = 900;
+          // Redimensionar y comprimir suavemente para carga rápida y ligera
+          const MAX_DIM = 850;
           let width = img.width;
           let height = img.height;
 
@@ -1375,7 +1516,7 @@
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
 
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
           AppState.pendingPhotoDataUrl = compressedDataUrl;
 
           const previewImg = document.getElementById('photo-preview-img');
@@ -1393,6 +1534,7 @@
       event.preventDefault();
       const editId = document.getElementById('photo-edit-id').value;
       const dateValue = document.getElementById('photo-date-input').value.trim();
+      const submitBtn = document.getElementById('photo-submit-btn');
 
       if (!AppState.pendingPhotoDataUrl) {
         showToast('Selecciona una fotografía primero.', 'error');
@@ -1403,6 +1545,9 @@
         showToast('Escribe la fecha de la fotografía.', 'error');
         return;
       }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Guardando...';
 
       let updatedPhotos = [...AppState.photos];
 
@@ -1421,6 +1566,9 @@
       }
 
       const saved = await StorageService.savePhotos(updatedPhotos);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Guardar Polaroid';
+
       if (saved) {
         AppState.photos = updatedPhotos;
         renderPhotos();
@@ -1518,7 +1666,7 @@
               Aún no hay canciones
             </p>
             <p class="text-xs text-inkMuted mt-1">
-              Añade vuestra primera canción especial para crear la banda sonora.
+              Agrega nuestra primer cancion.
             </p>
             <button
               type="button"
@@ -1640,11 +1788,15 @@
       const title = document.getElementById('song-title-input').value.trim();
       const artist = document.getElementById('song-artist-input').value.trim();
       const link = document.getElementById('song-link-input').value.trim();
+      const submitBtn = document.getElementById('song-submit-btn');
 
       if (!title || !artist) {
         showToast('Completa el nombre de la canción y el artista.', 'error');
         return;
       }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Guardando...';
 
       const newSong = {
         id: generateId('song'),
@@ -1655,6 +1807,9 @@
 
       const updatedSongs = [...AppState.songs, newSong];
       const saved = await StorageService.saveSongs(updatedSongs);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Guardar canción';
+
       if (saved) {
         AppState.songs = updatedSongs;
         renderSongs();
@@ -1886,11 +2041,15 @@
       const date = document.getElementById('letter-date-input').value.trim();
       const body = document.getElementById('letter-body-input').value.trim();
       const author = document.getElementById('letter-author-input').value.trim();
+      const submitBtn = document.getElementById('letter-submit-btn');
 
       if (!title || !date || !body || !author) {
         showToast('Por favor completa todos los campos de la carta.', 'error');
         return;
       }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Guardando...';
 
       let updatedLetters = [...AppState.letters];
 
@@ -1910,6 +2069,9 @@
       }
 
       const saved = await StorageService.saveLetters(updatedLetters);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Guardar carta en el sobre';
+
       if (saved) {
         AppState.letters = updatedLetters;
         updateLettersBadge();
